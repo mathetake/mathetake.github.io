@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<link rel="shortcut icon" href="../images/avatar.png" type="image/vnd.microsoft.icon">
+		<title>Approximate Nearest Neighbor search in Golang - Takeshi Yoneda</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body id="top">
+
+		<!-- Header -->
+			<header id="header">
+					<a href="" class="image avatar"><img src="../images/avatar.png" alt="" /></a>
+					<h1><strong>Takeshi Yoneda (@mathetake)</strong></h1><br />
+					a software engineer who loves mathematics, machine learning and their real world applications.<br />
+					<br/>
+					<ul class="icons">
+						<li><a href="https://mathetake.github.io" class="icon fa-home"><span class="label">Home</span></a></li>
+						<li><a href="https://twitter.com/mathetake" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="https://github.com/mathetake" class="icon fa-github"><span class="label">Github</span></a></li>
+						<li><a href="http://mathetake.hatenablog.com" class="icon fa-rss"><span class="label">Blog</span></a></li>
+						<li><a href="mailto:cz.rk.t0415y.g@gmail.com" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+					</ul>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+					<section>
+						<header class="major">
+							<h1>Approximate Nearest Neighbor search in Golang</h1>
+						</header>
+					</section>
+					<section>
+						<h2>
+							Introduction
+						</h2>
+						<p>
+							The aim of this post is to explain the basic algorithm and the parameters to be tuned in <a href="https://github.com/mathetake/gann"><i>gann</i></a>, a library for <b> Approximate Nearest Neighbor(ANN) search</b> purely written in go.
+							I'm gonna make every effort to make it as easy as possible, the readers are assumed to have basic knowledge of math, especially basic linear algebra.
+						</p>
+						<p>
+							As of writing this post, <i>gann</i> only supports cosine similarity search, so I would focus on describing the case when ANN search in terms of cosine similarity.
+						</p>
+						<p>
+							In the subsequence sections, we use the following notations
+							\begin{eqnarray*}
+								d  \ \ &:& \ \ \textrm {the dimension of feature vectors of items}& \\
+								I = \{v_1, \dots, v_N \} \subset \mathbb{R}^d &:& \ \  \textrm{items}& \\
+								q, v, w, x, y \subset \mathbb{R}^d  \ \ &:& \ \  \textrm{arbitrary $d$-dimensional vector} \\
+								S^d = \{v \in \mathbb{R}^d  \mid \|v\| =1 \} \ \ &:& \ \ d\textrm{-dimensional sphere} \\
+								 < v, w >\ \ &:&  \ \ \textrm{inner product between} \ v, w
+							\end{eqnarray*}
+							and we assume that the all of items(' vectors) are on $S^d$. This assumption is practically plausible because we often have enough time to prepare search algorithms before execution. 
+						</p>
+					</section>
+					<section>
+						<h2>
+							Background - <i>why approximate search</i>
+						</h2>
+						<p>
+							hooooooooo
+						</p>
+					</section>
+					<section>
+						<h2>
+							k-d tree on d-Sphere
+						</h2>
+						<p>
+							<!-- 空間を分解する話。内積で計算出来るよねみたいな話 -->
+						</p>
+					</section>
+					<section>
+						<h2>
+							<i>GannIndex</i> = a set of nods in k-d trees on 
+						</h2>
+						<p>
+							<!-- goroutine 使っているところとか事前に計算しておくところとか、rootかどうかみたいな話 -->
+						</p>
+					</section>
+					<section>
+						<h2>
+							Search steps
+						</h2>
+						<p>
+							<!-- 実際に検索ステップがどうなるのかみたいな話 -->
+						</p>
+					</section>
+					<section>
+						<h2>
+							Easy Experiments
+						</h2>
+						<p>
+							<!-- 実際に検索ステップがどうなるのかみたいな話 -->
+						</p>
+					</section>
+					<section>
+						<h2>
+							Conclusion
+						</h2>
+						<p>
+							When $a \ne 0$, there are two solutions to $ax^2 + bx + c = 0$ and they are 
+						    \begin{align*}
+								F(\omega) = \cfrac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}f(t)e^{i\omega t}dt
+							\end{align*}
+						</p>
+					</section>
+
+					<!-- edit here to make share buttons work-->
+					<section id="two">
+					<div align="center">
+					share ......
+						<a href="http://twitter.com/share?url=https://mathetake.github.io/blogs/gann.html&text=Approximate Nearest Neighbor search in Golang (by @mathetake)" class="icon fa-twitter">
+							<span class="label">Twitter</span> 
+						</a>
+						<a href="http://www.facebook.com/share.php?u=https://mathetake.github.io/blogs/gann.html" onclick="window.open(this.href, 'FBwindow', 'width=650, height=450, menubar=no, toolbar=no, scrollbars=yes'); return false;" class="icon fa-facebook">
+							<span class="label">Facebook</span> 
+						</a>
+						<a href="https://plus.google.com/share?url=https://mathetake.github.io/blogs/gann.html" class="icon fa-google-plus">
+							<span class="label">Twitter</span> 
+						</a>
+					</div>
+					</section>
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="copyright">
+						<li>Copyright 2018 &copy; mathetake</li><li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.poptrox.min.js"></script>
+			<script src="../assets/js/skel.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../assets/js/main.js"></script>
+			<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js' type='text/javascript'>    
+			    MathJax.Hub.Config({
+			        HTML: ["input/TeX","output/HTML-CSS"],
+			        TeX: { extensions: ["AMSmath.js","AMSsymbols.js"], 
+			               equationNumbers: { autoNumber: "AMS" } },
+			        extensions: ["tex2jax.js"],
+			        jax: ["input/TeX","output/HTML-CSS"],
+			        tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+			                   displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+			                   processEscapes: true },
+			        "HTML-CSS": { availableFonts: ["TeX"],
+			                      linebreaks: { automatic: true } }
+			    });
+			</script>
+	</body>
+</html>
