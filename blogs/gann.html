@@ -45,10 +45,11 @@
 						</h2>
 						<p>
 							The aim of this post is to explain the basic algorithm and parameters to be tuned in <a href="https://github.com/mathetake/gann"><i>gann</i></a>, a library for <b> Approximate Nearest Neighbor(ANN) search</b> purely written in go.
-							I'm gonna make every effort to make this post as easy as possible, the readers are assumed to have basic knowledge of math, especially basic linear algebra.
+							I'm gonna make every effort to make this post as easy as possible, the readers are assumed to have basic knowledge of math, especially basic linear algebra. Note that the algorithm is almost similar to that of <a href="https://github.com/Spotify/Annoy"><i>Annoy</i></a>, <i> a library for Approximate Nearest Neighbors in C++/Python optimized for memory usage and loading/saving to disk</i>
+
 						</p>
 						<p>
-							As of writing this post, <i>gann</i> only supports cosine similarity search, so I would focus on describing the case when ANN search using cosine similarity.
+							As of writing this post, <i>gann</i> only supports cosine similarity search, so I focus on describing the ANN search algorithm for cosine similarity metrics implemented in <i>gann</i>.
 						</p>
 						<p>
 							In the subsequence sections, we use the following notations
@@ -69,30 +70,80 @@
 						<p>
 							Why do we need <i> approximate</i> nearest neighbor search algorithms? The reason is that the computation of <i>exact</i> search is really expensive if $N >> 0$ and $d >> 0$. 
 							<br>
-							In fact, its computational complexity is $O(Nd)$ since we have to calculate distances between a query vector $q$ and every items in $I$ (for $N$ times) and the complexity of each distance calculation is $O(d)$ for almost all major metrics like $L^2$ (Euclidean) metric
+							In fact, its computational complexity is $O(Nd)$ since we have to calculate distances between a query vector $q$ and every item in $I$ (for $N$ times) and the complexity of each distance calculation is $O(d)$ for almost all major metrics like $L^2$ (Euclidean) metric
 							$$
 							\textrm{Eucledian}(x, y) := \sqrt{ (x_1 - y_1)^2 + (x_2 - y_2)^2 + \cdots + (x_d - y_d)^2}, \ \ \ x,y \in \mathbb{R}^d
 							$$
 							or cosine similarity metric
 							$$
-							\textrm{Cosine}(x, y) := \dfrac{< x,y >}{\|x\| \|y\|}, \ \ \ x,y \in \mathbb{R}^d.
+							\textrm{Cosine}(x, y) := \dfrac{\left< x,y \right>}{\|x\| \|y\|}, \ \ \ x,y \in \mathbb{R}^d.
 							$$
 						</p>
 						<p>
-							In the era of big data, situations where $N >> 0$ and $d >> 0$ are really common, but fortunately we often have optimal neighbors enough because items $N >> 0$. That motivates us to develop approximate yet low-latency nearest neighbor search algorithms.
+							In the era of big data, situations where $N >> 0$ and $d >> 0$ are really common, but fortunately we often have practically optimal neighbors enough because $N >> 0$. That motivates us to develop approximate yet low-latency nearest neighbor search algorithms.
 						</p>
 					</section>
 					<section>
 						<h2>
-							Building a 2-means forest on d-Sphere
+							Building BSP tree on $d$-sphere
 						</h2>
 						<p>
-							<!-- 空間を分解する話。内積で計算出来るよねみたいな話 -->
+							Now we are diving into the algorithm implemented in <i>Annoy/gann</i>. The goal of ANN search is to, given a query vector $q$, find a subset $I^\prime$ of $I$ consisting of items which are near (in sense of cosine similarity) enough to $q$. Since any $v_i$ is normalized, the similarity is calculated as 
+							$$
+							\textrm{Cosine}(q, v_i) \ \ = \ \ \dfrac{\left< q, v_i \right>}{\|q\| } \ \ = \ \ C \times \left< q, v_i \right> \ \ \propto  \ \ \left< q, v_i \right>
+							$$ 
+							where $C$ is a constant factor which is independent of $v_i$, so the problem is now broken down into 
+							<i>find items with large inner product with $q$.</i>
+						</p>
+						<p>
+							The core idea of the algorithm in <i>Annoy/gann</i> is to partition the vector space (which is equivalent to build a <i>BSP tree</i>) to group similar items for a single partition (a leaf). Because of that, we can find optimal neighbors (neighbor partitions) by only calculating the distance between the partitions and a query vector which is much more efficient than the case of exact search.
+						</p>
+						<p>
+							In our settings, we have to build trees on $d$-sphere. Let's get started with building a root node $\mathcal{N}$. First we consider $I$ as $\mathcal{N}$<i>'s items</i> $\mathcal{N}_{items} := I$ and execute $2$-means clustering algorithm on $\mathcal{N}_d$ and get centroids $c_1, c_2$. Then we define the $\mathcal{N}$<i>'s vector</i>  $\mathcal{N}_v$ as 
+							$$
+							\mathcal{N}_v := \dfrac{c_1 - c_2}{\|c_1 - c_2 \|}
+							$$
+						</p>
+						<div align="center">
+							<img src="./assets/gann/root_node.png" alt="">
+						</div>
+						<p>
+							After that, we partition $\mathcal{N}_d$ into two child nodes $\mathcal{N}_{c_1}, \mathcal{N}_{c_2}$ as
+							$$
+							v \textrm{ belongs to } 
+							\begin{cases}
+								(\mathcal{N}_{c_1})_{items} \ \ \ \left< N_v, v \right> \geq  0 \\ 
+								(\mathcal{N}_{c_2})_{items} \ \ \ \ \textrm{o.w.}
+							\end{cases}
+							$$
+						</p>
+						<div align="center">
+							<img src="./assets/gann/root_node_partitioning.png" alt="">
+						</div>
+						<p>
+							Now we have finished building a root node $\mathcal{N}$ with items $N_{items} = I$, vector $N_v = \frac{c_1 - c_2}{\|c_1 - c_2 \|}$ and child nodes $\mathcal{N}_{c_1}, \mathcal{N}_{c_2}$ whose items are
+							$$
+							(\mathcal{N}_{c_1})_{items} = \{ v \in N_{items} \mid \left < N_v, v \right> \geq 0 \} \\
+							(\mathcal{N}_{c_2})_{items} = \{ v \in N_{items} \mid \left < N_v, v \right> < 0 \}. \\
+							$$
+							Then, we recursively build child nodes in the same way until the number of children's items is less than the <b>threshold</b>, such nodes are called as <i> leaf</i>. Note that the variable <b><i>k</i></b> represents the threshold in <i>gann</i>:  <a href="https://github.com/mathetake/gann/blob/0.1/node/node.go#L40-L47"> source </a>.
+						</p>
+						<div align="center">
+							<img src="./assets/gann/recursive_build.png" alt="">
+						</div>
+						<p>
+							In the above example, we set the threshold to be $4$. Therefore the building steps continue until its children become leaf nodes with items < $4$, and we have the corresponding BSP tree: 
+						</p>
+						<div align="center">
+							<img src="./assets/gann/bsp_tree.png" alt="">
+						</div>
+						<p>
+							Note that in the implementation, we sample a subset of items for $2$-means clustering in order to speed up building steps (<a href="https://github.com/mathetake/gann/blob/0.1/item/arithmetic.go#L54-L70"> source</a>).
 						</p>
 					</section>
 					<section>
 						<h2>
-							<i>GannIndex</i> = the set of nodes in a forest
+							<i>GannIndex</i> = the set of nodes in a forest of BSP trees
 						</h2>
 						<p>
 							<!-- goroutine 使っているところとか事前に計算しておくところとか、rootかどうかみたいな話 -->
@@ -119,10 +170,7 @@
 							Conclusion
 						</h2>
 						<p>
-							When $a \ne 0$, there are two solutions to $ax^2 + bx + c = 0$ and they are 
-						    \begin{align*}
-								F(\omega) = \cfrac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}f(t)e^{i\omega t}dt
-							\end{align*}
+							
 						</p>
 					</section>
 
