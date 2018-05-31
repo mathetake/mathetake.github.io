@@ -36,7 +36,7 @@
 
 					<section>
 						<header class="major">
-							<h1>Approximate Nearest Neighbor search in Golang</h1>
+							<h1>Approximate Nearest Neighbor search in Go</h1>
 						</header>
 					</section>
 					<section>
@@ -44,11 +44,11 @@
 							Introduction
 						</h2>
 						<p>
-							The aim of this post is to explain the basic algorithm and the parameters to be tuned in <a href="https://github.com/mathetake/gann"><i>gann</i></a>, a library for <b> Approximate Nearest Neighbor(ANN) search</b> purely written in go.
-							I'm gonna make every effort to make it as easy as possible, the readers are assumed to have basic knowledge of math, especially basic linear algebra.
+							The aim of this post is to explain the basic algorithm and parameters to be tuned in <a href="https://github.com/mathetake/gann"><i>gann</i></a>, a library for <b> Approximate Nearest Neighbor(ANN) search</b> purely written in go.
+							I'm gonna make every effort to make this post as easy as possible, the readers are assumed to have basic knowledge of math, especially basic linear algebra.
 						</p>
 						<p>
-							As of writing this post, <i>gann</i> only supports cosine similarity search, so I would focus on describing the case when ANN search in terms of cosine similarity.
+							As of writing this post, <i>gann</i> only supports cosine similarity search, so I would focus on describing the case when ANN search using cosine similarity.
 						</p>
 						<p>
 							In the subsequence sections, we use the following notations
@@ -67,12 +67,24 @@
 							Background - <i>why approximate search</i>
 						</h2>
 						<p>
-							hooooooooo
+							Why do we need <i> approximate</i> nearest neighbor search algorithms? The reason is that the computation of <i>exact</i> search is really expensive if $N >> 0$ and $d >> 0$. 
+							<br>
+							In fact, its computational complexity is $O(Nd)$ since we have to calculate distances between a query vector $q$ and every items in $I$ (for $N$ times) and the complexity of each distance calculation is $O(d)$ for almost all major metrics like $L^2$ (Euclidean) metric
+							$$
+							\textrm{Eucledian}(x, y) := \sqrt{ (x_1 - y_1)^2 + (x_2 - y_2)^2 + \cdots + (x_d - y_d)^2}, \ \ \ x,y \in \mathbb{R}^d
+							$$
+							or cosine similarity metric
+							$$
+							\textrm{Cosine}(x, y) := \dfrac{< x,y >}{\|x\| \|y\|}, \ \ \ x,y \in \mathbb{R}^d.
+							$$
+						</p>
+						<p>
+							In the era of big data, situations where $N >> 0$ and $d >> 0$ are really common, but fortunately we often have optimal neighbors enough because items $N >> 0$. That motivates us to develop approximate yet low-latency nearest neighbor search algorithms.
 						</p>
 					</section>
 					<section>
 						<h2>
-							k-d tree on d-Sphere
+							Building a 2-means forest on d-Sphere
 						</h2>
 						<p>
 							<!-- 空間を分解する話。内積で計算出来るよねみたいな話 -->
@@ -80,7 +92,7 @@
 					</section>
 					<section>
 						<h2>
-							<i>GannIndex</i> = a set of nods in k-d trees on 
+							<i>GannIndex</i> = the set of nodes in a forest
 						</h2>
 						<p>
 							<!-- goroutine 使っているところとか事前に計算しておくところとか、rootかどうかみたいな話 -->
