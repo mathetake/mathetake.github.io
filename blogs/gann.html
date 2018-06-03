@@ -13,6 +13,15 @@
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="../assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+		<!-- for og-->
+		<meta property="og:title" content="Approximate Nearest Neighbor search in Golang" />
+		<meta property="og:type" content="blog" />
+		<meta property="og:url" content="https://mathetake.github.io/blogs/gann.html" />
+		<meta property="og:image" content="./assets/gann/root_node_partitioning.png" />
+		<meta property="og:site_name"  content="Takeshi Yoneda" />
+
+		<meta name="twitter:site" content="@mathetake" />
 	</head>
 	<body id="top">
 
@@ -45,7 +54,7 @@
 						</h2>
 						<p>
 							The aim of this post is to explain the basic algorithm and parameters to be tuned in <a href="https://github.com/mathetake/gann"><i>gann</i></a>, a library for <b> Approximate Nearest Neighbor(ANN) search</b> purely written in go.
-							I'm gonna make every effort to make this post as easy as possible, the readers are assumed to have basic knowledge of math, especially basic linear algebra. Note that the algorithm is almost similar to that of <a href="https://github.com/Spotify/Annoy"><i>Annoy</i></a>, <i> a library for Approximate Nearest Neighbors in C++/Python optimized for memory usage and loading/saving to disk</i>
+							I'm gonna make every effort to make this post as easy as possible, the readers are assumed to have basic knowledge of math. Note that the algorithm is almost similar to that of <a href="https://github.com/Spotify/Annoy"><i>Annoy</i></a>, <i> a library for Approximate Nearest Neighbors in C++/Python optimized for memory usage and loading/saving to disk</i>
 
 						</p>
 						<p>
@@ -85,7 +94,7 @@
 					</section>
 					<section>
 						<h2>
-							Building BSP tree on $d$-sphere
+							Building a BSP tree on $d$-sphere
 						</h2>
 						<p>
 							Now we are diving into the algorithm implemented in <i>Annoy/gann</i>. The goal of ANN search is to, given a query vector $q$, find a subset $I^\prime$ of $I$ consisting of items which are near (in sense of cosine similarity) enough to $q$. Since any $v_i$ is normalized, the similarity is calculated as 
@@ -99,7 +108,7 @@
 							The core idea of the algorithm in <i>Annoy/gann</i> is to partition the vector space (which is equivalent to build a <i>BSP tree</i>) to group similar items for a single partition (a leaf). Because of that, we can find optimal neighbors (neighbor partitions) by only calculating the distance between the partitions and a query vector which is much more efficient than the case of exact search.
 						</p>
 						<p>
-							In our settings, we have to build trees on $d$-sphere. Let's get started with building a root node $\mathcal{N}$. First we consider $I$ as $\mathcal{N}$<i>'s items</i> $\mathcal{N}_{items} := I$ and execute $2$-means clustering algorithm on $\mathcal{N}_d$ and get centroids $c_1, c_2$. Then we define the $\mathcal{N}$<i>'s vector</i>  $\mathcal{N}_v$ as 
+							In our settings, it corresponds to building a tree on $d$-sphere. Let's get started with building a root node $\mathcal{N}$. First we consider $I$ as $\mathcal{N}$<i>'s items</i> $\mathcal{N}_{items} := I$ and execute $2$-means clustering algorithm on $\mathcal{N}_{items}$ (Note that, in the implementation, we sample a subset of items for $2$-means clustering in order to speed up building steps (<a href="https://github.com/mathetake/gann/blob/0.1/item/arithmetic.go#L54-L67"> source</a>).) and get centroids $c_1, c_2$. Then we define the $\mathcal{N}$<i>'s vector</i>  $\mathcal{N}_v$ as 
 							$$
 							\mathcal{N}_v := \dfrac{c_1 - c_2}{\|c_1 - c_2 \|}
 							$$
@@ -132,34 +141,92 @@
 							<img src="./assets/gann/recursive_build.png" alt="">
 						</div>
 						<p>
-							In the above example, we set the threshold to be $4$. Therefore the building steps continue until its children become leaf nodes with items < $4$, and we have the corresponding BSP tree: 
+							In the above example, we set the threshold to be $5$. Therefore the building steps continue until its children become leaf nodes with the number of items $< 5$, and we have the corresponding BSP tree: 
 						</p>
 						<div align="center">
 							<img src="./assets/gann/bsp_tree.png" alt="">
 						</div>
 						<p>
-							Note that in the implementation, we sample a subset of items for $2$-means clustering in order to speed up building steps (<a href="https://github.com/mathetake/gann/blob/0.1/item/arithmetic.go#L54-L70"> source</a>).
+							
+						</p>
+						<p>
+						In <i>gann</i>, the struct type of a node is given by (<a href="https://github.com/mathetake/gann/blob/0.1/node/node.go#L19-L33"> source </a>)
+<pre><code class="prettyprint lang-go">type Node struct {
+	ID string
+	Vec item.Vector
+	NDescendants int
+	Children []*Node
+	Leaf []int64
+}
+</code></pre>
+							where <code>ID</code> is a uuid, <code>Vec</code> is $\mathcal{N}_v$, <code>NDescendants</code> equals $\# (\mathcal{N})_{items}$, <code>Children</code> is the slice of child nodes, and <code>Leaf</code> equals the slice of ids of items in $(\mathcal{N})_{items}$. Note that both <code>Children</code> and <code>Vec</code> are nil if and only if $\mathcal{N}$ is leaf node if and only if <code>Leaf</code> is not nil in our implementation. (<a href="https://github.com/mathetake/gann/blob/0.1/node/node.go#L35-L37"> source </a>) 
 						</p>
 					</section>
 					<section>
 						<h2>
-							<i>GannIndex</i> = the set of nodes in a forest of BSP trees
+							The <i>Index</i> = the set of nodes in a forest of BSP trees
 						</h2>
 						<p>
-							<!-- goroutine 使っているところとか事前に計算しておくところとか、rootかどうかみたいな話 -->
+							In the previous section, I described how to build a BSP-tree on $d$-sphere. In <i>gann</i>, we need to build the struct called <code>Index</code> before executing ANN search. The definition of <code>Index</code> is given by (<a href="https://github.com/mathetake/gann/blob/0.1/index/index.go#L9-L29"> source </a>) 
+<pre><code class="prettyprint lang-go">type Index struct {
+	dim int
+	nTree int
+	k int
+
+	items        []item.Item
+	itemIDToItem map[int64]item.Item
+
+	nodes        []*node.Node
+	nodeIDToNode map[string]*node.Node
+
+	roots []*node.Node
+}
+
+</code></pre>
+							where <code>dim</code> is the dimension of the items' vector, <code>nTree</code> represents the number of BSP-trees we use for ANN search, <code>k</code> is the threshold explained above, and the others are obvious.
 						</p>
+						<p>
+							As the first step, we initialize <code>Index</code> by giving <code>k</code>, <code>dim</code>, <code>items</code> to <code>Initialize</code> fucntion in <i>index</i> package (<a href="https://github.com/mathetake/gann/blob/0.1/index/index.go#L35-L66"> source </a>) 
+<pre><code class="prettyprint lang-go">// Initialize ... initialize Index strcut.
+func Initialize(rawItems [][]float32, d int, nTree int, k int, ...) (*Index, error) {
+	...
+} 
+</code></pre>				
+							and get <code>*Index</code>. Then we initialize <code>nTrees</code> root nodes (<a href="https://github.com/mathetake/gann/blob/0.1/index/impl.go#L143-L157"> source </a>), and then build BSP-trees corresponding to the root nodes in parallel using multiple goroutines (<a href="https://github.com/mathetake/gann/blob/0.1/index/impl.go#L111-L141"> source </a>)
+<pre><code class="prettyprint lang-go">var wg sync.WaitGroup
+var m sync.Map  // used to collect all of nodes in the BSP-trees
+for i := range idx.roots {
+	wg.Add(1)
+	ii := i
+	go func() {
+		// build a BSP-tree as in the previous section
+		idx.roots[ii].Build(idx.items, idx.k, idx.dim, &m)
+		wg.Done()
+	}()
+}
+wg.Wait()
+</code></pre>
+							After finishing building all of BSP-trees, we collect all of nodes in the BSP-trees which are built in parallel and append them to <code>Index.nodes</code> (<a href="https://github.com/mathetake/gann/blob/0.1/index/impl.go#L126-L139"> source </a>). <br>
+						</p>
+<pre><code class="prettyprint lang-go">m.Range(func(key, _ interface{}) bool {
+		n := key.(*node.Node)
+		idx.nodes = append(idx.nodes, n)
+		return true
+})
+</code></pre>
+					Now we may say that <code>Index</code> is <b>the set of nodes in a forest of BSP trees whose items, size of leaf and number of trees are given by users.</b>
 					</section>
 					<section>
 						<h2>
 							Search steps
 						</h2>
 						<p>
-							<!-- 実際に検索ステップがどうなるのかみたいな話 -->
+							Having built <code>Index</code> , we are ready to execute ANN search for any query vectors in $\mathbb{R}^d$. 
 						</p>
 					</section>
 					<section>
 						<h2>
-							Easy Experiments
+							Parameters to be tuned
 						</h2>
 						<p>
 							<!-- 実際に検索ステップがどうなるのかみたいな話 -->
@@ -173,12 +240,20 @@
 							
 						</p>
 					</section>
-
+					<section>
+						<h2>
+							References
+						</h2>
+						<ol>
+							<li><a href="https://erikbern.com/2015/10/01/nearest-neighbors-and-vector-models-part-2-how-to-search-in-high-dimensional-spaces.html">Nearest neighbors and vector models – part 2 – algorithms and data structures</a></li>
+							<li><a href="https://github.com/spotify/annoy">Spotify/Annoy</a></li>
+						</ol>
+					</section>
 					<!-- edit here to make share buttons work-->
 					<section id="two">
 					<div align="center">
 					share ......
-						<a href="http://twitter.com/share?url=https://mathetake.github.io/blogs/gann.html&text=Approximate Nearest Neighbor search in Golang (by @mathetake)" class="icon fa-twitter">
+						<a href="http://twitter.com/share?url=https://mathetake.github.io/blogs/gann.html&text=Approximate Nearest Neighbor search in Go (by @mathetake )" class="icon fa-twitter">
 							<span class="label">Twitter</span> 
 						</a>
 						<a href="http://www.facebook.com/share.php?u=https://mathetake.github.io/blogs/gann.html" onclick="window.open(this.href, 'FBwindow', 'width=650, height=450, menubar=no, toolbar=no, scrollbars=yes'); return false;" class="icon fa-facebook">
@@ -221,5 +296,6 @@
 			                      linebreaks: { automatic: true } }
 			    });
 			</script>
+			<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 	</body>
 </html>
