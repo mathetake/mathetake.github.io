@@ -104,7 +104,7 @@
 							<i>find items with large inner product with $q$.</i>
 						</p>
 						<p>
-							The core idea of the algorithm in <i>Annoy/gann</i> is to partition the vector space (which is equivalent to build a <i>BSP tree</i>) to group similar items for a single partition (a leaf). Because of that, we can find optimal neighbors (neighbor partitions) by only calculating the distance between the partitions and a query vector which is much more efficient than the case of exact search.
+							The core idea of the algorithm in <i>Annoy/gann</i> is to partition the vector space (which is equivalent to build a BSP tree<a href="#BSP">[3]</a>) to group similar items for a single partition (a leaf). Because of that, we can find optimal neighbors (neighbor partitions) by only calculating the distance between the partitions and a query vector which is much more efficient than the case of exact search.
 						</p>
 						<p>
 							In our settings, it corresponds to building a tree on $d$-sphere. Let's get started with building a root node $\mathcal{N}$. First we consider $I$ as $\mathcal{N}$<i>'s items</i> $\mathcal{N}_{items} := I$ and execute $2$-means clustering algorithm on $\mathcal{N}_{items}$ (Note that, in the implementation, we sample a subset of items for $2$-means clustering in order to speed up building steps (<a href="https://github.com/mathetake/gann/blob/0.1/item/arithmetic.go#L54-L67"> source</a>).) and get centroids $c_1, c_2$. Then we define the $\mathcal{N}$<i>'s vector</i>  $\mathcal{N}_v$ as 
@@ -275,7 +275,13 @@ wg.Wait()
 								</ol>
 							</b>
 							Easy, right? The point is that we can bound the number of exact distance calculations by our parameters such as <code>k</code>(size of leaf) and <code>bucketScale</code>. The larger <code>k</code> and <code>bucketScale</code> are, the more we have to calculate distances in order to reach more leaf nodes. This indicates that we will get more accurate search results with these values larger. There are trade offs between accuracy of ANN search and the largeness of <code>k</code> and <code>bucketScale</code>.
-						</p>	
+						</p>
+						<p>
+							Also the more trees we have, the more accurate results we will get. Every BSP-tree constructed by the above process consists of <b>random</b> splits, and therefore it is necessary to travel through (or find) the <i>best</i> trees in the constructed forests for accurate result.
+						</p>
+						<p>
+							The reason why we use priority queues and multiple trees is described in detailed at <a href="#annoyPost">[1]</a> which is really fun to read 😉.
+						</p>
 					</section>
 					<section> 
 						<h2>
@@ -290,8 +296,9 @@ wg.Wait()
 							References
 						</h2>
 						<ol>
-							<li><a href="https://erikbern.com/2015/10/01/nearest-neighbors-and-vector-models-part-2-how-to-search-in-high-dimensional-spaces.html">Nearest neighbors and vector models – part 2 – algorithms and data structures</a></li>
+							<li><a name="annoyPost" href="https://erikbern.com/2015/10/01/nearest-neighbors-and-vector-models-part-2-how-to-search-in-high-dimensional-spaces.html">Nearest neighbors and vector models – part 2 – algorithms and data structures</a></li>
 							<li><a href="https://github.com/spotify/annoy">Spotify/Annoy</a></li>
+							<li><a name="BSP" href="https://en.wikipedia.org/wiki/Binary_space_partitioning">Binary space partitioning - Wikipedia </a></li>
 						</ol>
 					</section>
 					<!-- edit here to make share buttons work-->
