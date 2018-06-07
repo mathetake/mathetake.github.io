@@ -68,7 +68,7 @@
 								S^d = \{v \in \mathbb{R}^d  \mid \|v\| =1 \} \ \ &:& \ \ d\textrm{-dimensional sphere} \\
 								 < v, w >\ \ &:&  \ \ \textrm{inner product between} \ v, w
 							\end{eqnarray*}
-							and we assume that the all of items(' vectors) are on $S^d$. This assumption is practically plausible because we often have enough time to prepare search algorithms before execution. 
+							and we assume that the all of items(' vectors) are on $S^d$. This assumption is practically plausible because we usually have enough time to prepare search algorithms before execution. 
 						</p>
 					</section>
 					<section>
@@ -76,7 +76,7 @@
 							Background - <i>why approximate search</i>
 						</h2>
 						<p>
-							Why do we need <i> approximate</i> nearest neighbor search algorithms? The reason is that the computation of <i>exact</i> search is really expensive if $N >> 0$ and $d >> 0$. 
+							Why do we need <i> approximate</i> nearest neighbor search algorithms? The reason is that the computation of the <i>exact</i> nearest neighbor search is really expensive if $N >> 0$ and $d >> 0$. 
 							<br>
 							In fact, its computational complexity is $O(Nd)$ since we have to calculate distances between a query vector $q$ and every item in $I$ (for $N$ times) and the complexity of each distance calculation is $O(d)$ for almost all major metrics like $L^2$ (Euclidean) metric
 							$$
@@ -88,7 +88,7 @@
 							$$
 						</p>
 						<p>
-							In the era of big data, situations where $N >> 0$ and $d >> 0$ are really common, but fortunately we often have practically optimal neighbors enough because $N >> 0$. That motivates us to develop approximate yet low-latency nearest neighbor search algorithms.
+							In the era of big data, situations where $N >> 0$ and $d >> 0$ are really common, but fortunately we often have practically optimal neighbors enough because $N >> 0$. That motivates us to develop approximate yet <i>low-latency</i> nearest neighbor search algorithms.
 						</p>
 					</section>
 					<section>
@@ -96,18 +96,18 @@
 							Building a BSP tree on $d$-sphere
 						</h2>
 						<p>
-							Now we are diving into the algorithm implemented in <i>Annoy/gann</i>. The goal of ANN search is to, given a query vector $q$, find a subset $I^\prime$ of $I$ consisting of items which are near (in sense of cosine similarity) enough to $q$. Since any $v_i$ is normalized, the similarity is calculated as 
+							Let us dive into the algorithm implemented in <i>Annoy/gann</i>. The goal of ANN search is to, given a query vector $q$, find a subset $I^\prime$ of $I$ consisting of items which are near (in sense of cosine similarity) enough to $q$. Since any $v_i$ is normalized, the similarity is calculated as
 							$$
 							\textrm{Cosine}(q, v_i) \ \ = \ \ \dfrac{\left< q, v_i \right>}{\|q\| } \ \ = \ \ C \times \left< q, v_i \right> \ \ \propto  \ \ \left< q, v_i \right>
 							$$ 
-							where $C$ is a constant factor which is independent of $v_i$, so the problem is now broken down into 
-							<i>find items with large inner product with $q$.</i>
+							where $C$ is a constant factor which is independent of $v_i$, the problem is now broken down into 
+							<i>find items with larger inner product with $q$.</i>
 						</p>
 						<p>
-							The core idea of the algorithm in <i>Annoy/gann</i> is to partition the vector space (which is equivalent to build a BSP tree<a href="#BSP">[3]</a>) to group similar items for a single partition (a leaf). Because of that, we can find optimal neighbors (neighbor partitions) by only calculating the distance between the partitions and a query vector which is much more efficient than the case of exact search.
+							The core idea of the algorithm in Annoy/gann is partitioning $\mathbb{R}^d$ (which is equivalent to buildings a BSP tree<a href="#BSP">[3]</a> on $\mathbb{R}^d$) so that similar items are  grouped together into a single partition.(a single leaf). Because of that, we can find optimal neighbors (neighbor partitions) by only calculating the distance between the partitions and a query vector, that is much more efficient than the case of exact search. Since we assumed that all the items are on $S^d$, it corresponds to building a tree on $S^d$. Let's get started with building a root node $\mathcal{N}$. 
 						</p>
 						<p>
-							In our settings, it corresponds to building a tree on $d$-sphere. Let's get started with building a root node $\mathcal{N}$. First we consider $I$ as $\mathcal{N}$<i>'s items</i> $\mathcal{N}_{items} := I$ and execute $2$-means clustering algorithm on $\mathcal{N}_{items}$ (Note that, in the implementation, we sample a subset of items for $2$-means clustering in order to speed up building steps (<a href="https://github.com/mathetake/gann/blob/0.1/item/arithmetic.go#L54-L67"> source</a>).) and get centroids $c_1, c_2$. Then we define the $\mathcal{N}$<i>'s vector</i>  $\mathcal{N}_v$ as 
+							First we consider $I$ as $\mathcal{N}$<i>'s items</i> $\mathcal{N}_{items} := I$ and execute $2$-means clustering algorithm on $\mathcal{N}_{items}$, and let $c_1, c_2$ the resulted centroids. Note that, in the implementation, we sample a subset of items for $2$-means clustering in order to speed up building steps (<a href="https://github.com/mathetake/gann/blob/0.1/item/arithmetic.go#L54-L67"> source</a>). Then we define the $\mathcal{N}$<i>'s vector</i>  $\mathcal{N}_v$ as 
 							$$
 							\mathcal{N}_v := \dfrac{c_1 - c_2}{\|c_1 - c_2 \|}
 							$$
@@ -129,18 +129,18 @@
 							<img src="./assets/gann/root_node_partitioning.png" alt="">
 						</div>
 						<p>
-							Now we have finished building a root node $\mathcal{N}$ with items $N_{items} = I$, vector $N_v = \frac{c_1 - c_2}{\|c_1 - c_2 \|}$ and child nodes $\mathcal{N}_{c_1}, \mathcal{N}_{c_2}$ whose items are
+							Now we have finished building a root node $\mathcal{N}$ with items $N_{items} = I$, vector $N_v = \frac{c_1 - c_2}{\|c_1 - c_2 \|}$ and child nodes $\mathcal{N}_{c_1}, \mathcal{N}_{c_2}$ whose items are given by
 							$$
-							(\mathcal{N}_{c_1})_{items} = \{ v \in N_{items} \mid \left < N_v, v \right> \geq 0 \} \\
+							(\mathcal{N}_{c_1})_{items} = \{ v \in N_{items} \mid \left < N_v, v \right> \geq 0 \}, \\
 							(\mathcal{N}_{c_2})_{items} = \{ v \in N_{items} \mid \left < N_v, v \right> < 0 \}. \\
 							$$
-							Then, we recursively build child nodes in the same way until the number of children's items is less than the <b>threshold</b>, such nodes are called as <i> leaf</i>. Note that the variable <b><i>k</i></b> in <i>gann</i> represents the threshold : <a href="https://github.com/mathetake/gann/blob/0.1/node/node.go#L40-L47"> source </a>.
+							Then, we recursively build child nodes in the same way until the number of children's items is less than the <b>threshold</b>, such nodes are called as <i> leaf</i>. Note that the variable <b><i>k</i></b> in <i>gann</i> represents the threshold <a href="https://github.com/mathetake/gann/blob/0.1/node/node.go#L40-L47"> source </a>.
 						</p>
 						<div align="center">
 							<img src="./assets/gann/recursive_build.png" alt="">
 						</div>
 						<p>
-							In the above example, we set the threshold to be $5$. Therefore the building steps continue until its children become leaf nodes with the number of items $< 5$, and we have the corresponding BSP tree: 
+							In the above example, we set the threshold to be $5$. Therefore the building steps continue until its children become leaf nodes with the number of items less than $5$, and we have the corresponding BSP tree: 
 						</p>
 						<div align="center">
 							<img src="./assets/gann/bsp_tree.png" alt="">
@@ -158,7 +158,7 @@
 	Leaf []int64
 }
 </code></pre>
-							where <code>ID</code> is a uuid, <code>Vec</code> is $\mathcal{N}_v$, <code>NDescendants</code> equals $\# (\mathcal{N})_{items}$, <code>Children</code> is the slice of child nodes, and <code>Leaf</code> equals the slice of ids of items in $(\mathcal{N})_{items}$. Note that both <code>Children</code> and <code>Vec</code> are nil if and only if $\mathcal{N}$ is leaf node if and only if <code>Leaf</code> is not nil in our implementation. (<a href="https://github.com/mathetake/gann/blob/0.1/node/node.go#L35-L37"> source </a>) 
+							where <code>ID</code> is a uuid, <code>Vec</code> corresponds to $\mathcal{N}_v$, <code>NDescendants</code> equals $\# (\mathcal{N})_{items}$, <code>Children</code> is the slice of child nodes, and <code>Leaf</code> equals the slice of ids of items in $(\mathcal{N})_{items}$. Note that both <code>Children</code> and <code>Vec</code> are nil if and only if $\mathcal{N}$ is leaf node if and only if <code>Leaf</code> is not nil in our implementation (<a href="https://github.com/mathetake/gann/blob/0.1/node/node.go#L35-L37"> source </a>).
 						</p>
 					</section>
 					<section>
@@ -182,7 +182,7 @@
 }
 
 </code></pre>
-							where <code>dim</code> is the dimension of the items' vector, <code>nTree</code> represents the number of BSP-trees we use for ANN search, <code>k</code> is the threshold explained above, and the others are obvious.
+							where <code>dim</code> is the dimension of the items' vector, <code>nTree</code> represents the number of BSP-trees we use for ANN search, <code>k</code> is the threshold explained above, and the others are obvious from their name.
 						</p>
 						<p>
 							As the first step, we initialize <code>Index</code> by giving <code>k</code>, <code>dim</code>, <code>items</code> to <code>Initialize</code> fucntion in <i>index</i> package (<a href="https://github.com/mathetake/gann/blob/0.1/index/index.go#L35-L66"> source </a>) 
@@ -191,7 +191,7 @@ func Initialize(rawItems [][]float32, d int, nTree int, k int, ...) (*Index, err
 	...
 } 
 </code></pre>				
-							and get <code>*Index</code>. Then we initialize <code>nTrees</code> root nodes (<a href="https://github.com/mathetake/gann/blob/0.1/index/impl.go#L143-L157"> source </a>), and build BSP-trees corresponding to the root nodes in parallel using multiple goroutines (<a href="https://github.com/mathetake/gann/blob/0.1/index/impl.go#L111-L141"> source </a>)
+							and get <code>*Index</code>. Then we initialize <code>nTrees</code> root nodes (<a href="https://github.com/mathetake/gann/blob/0.1/index/impl.go#L143-L157"> source </a>), and build BSP-trees corresponding to the root nodes in parallel using multiple goroutines (<a href="https://github.com/mathetake/gann/blob/0.1/index/impl.go#L111-L141"> source </a>):
 <pre><code class="prettyprint lang-go">var wg sync.WaitGroup
 var m sync.Map  // used to collect all of nodes in the BSP-trees
 for i := range idx.roots {
@@ -250,8 +250,8 @@ wg.Wait()
 												<li>
 													Calculate the distance between a query vector and the popped node's vector(<a href="https://github.com/mathetake/gann/blob/0.1/index/impl.go#L74"> source </a>)
 												</li>
-												<li>
-													Push the child nodes to <code>pq</code> so that the one to which a query vector belongs has higher priority than the other (<a href="https://github.com/mathetake/gann/blob/0.1/index/impl.go#L75-L82"> source </a>)
+												<li>`
+													Push the child nodes to <code>pq</code> so that the one to which a query vector belongs has higher priority than the other child (<a href="https://github.com/mathetake/gann/blob/0.1/index/impl.go#L75-L82"> source </a>)
 												</li>
 											</ol>
 										</li>
@@ -260,7 +260,7 @@ wg.Wait()
 							</ol>
 						</b>
 						<p>
-							Now we have approximated neighbor items in <code>bucket</code> collected by traveling through BSP-trees. To close, let us do ... 
+							Now we have approximate nearest neighbor items in <code>bucket</code> collected by traveling through BSP-trees. To close, let us do ... 
 							<b>
 								<ol>
 									<li>
@@ -274,21 +274,33 @@ wg.Wait()
 									</li>
 								</ol>
 							</b>
-							Easy, right? The point is that we can bound the number of exact distance calculations by our parameters such as <code>k</code>(size of leaf) and <code>bucketScale</code>. The larger <code>k</code> and <code>bucketScale</code> are, the more we have to calculate distances in order to reach more leaf nodes. This indicates that we will get more accurate search results with these values larger. There are trade offs between accuracy of ANN search and the largeness of <code>k</code> and <code>bucketScale</code>.
+							Easy, right? The point is that we can bound the number of exact distance calculations by our parameters such as <code>k</code>(size of leaf) and <code>bucketScale</code>. The larger <code>k</code> and <code>bucketScale</code> are, the more we have to calculate distances in order to reach more leaf nodes. This indicates that we will get more accurate search results with smaller <code>k</code> and larger <code>bucketScale</code> yet the more computation time we need.
 						</p>
 						<p>
-							Also the more trees we have, the more accurate results we will get. Every BSP-tree constructed by the above process consists of <b>random</b> splits, and therefore it is necessary to travel through (or find) the <i>best</i> trees in the constructed forests for accurate result.
+							Also the more trees we have, the more accurate results we will get. Every BSP-tree constructed by the above process consists of <b><i>random</i></b> splits, and therefore it is necessary to travel through multiple trees in the constructed forest to encounter <b><i>best</i></b> trees for each query.
 						</p>
 						<p>
 							The reason why we use priority queues and multiple trees is described in detailed at <a href="#annoyPost">[1]</a> which is really fun to read 😉.
 						</p>
 					</section>
-					<section> 
+					<section>
 						<h2>
 							Conclusion <!-- parameters to be tunesの話も -->
 						</h2>
 						<p>
-							In this post, I have described the algorithm implemented in <i>gann</i> and the parameters to be set by users which affects the search performance. 
+							In this post, I have described the algorithm implemented in <i>gann</i> and the parameters to be set by users which affects the search performance. As I described above, there are the following parameters:
+							<ol>
+								<li>
+									<code>nTrees</code> ... the number of trees in <code> Index</code>. The larger it is, the more accurate result we will get. Users are recommended to set larger <code>nTrees</code> as possible as they can without <a href="https://en.wikipedia.org/wiki/Out_of_memory">OOM</a>.
+								</li>
+								<li>
+									<code>k</code> ... the size of item set in leaf nodes. The smaller it is, the more accurate result we will get but the longer computational time it causes.
+								</li>
+								<li>
+									<code>bucketScale</code> ... the scale of <code>bucket</code> length. More precisely the length of <code>bucket</code> is defined as <code>int(num*bucketScale)</code>. Therefore the larger <code>bucketScale</code> we set, the more accurate results we will get but the longer computational time it causes.
+								</li>
+							</ol>
+							every <i>gann</i> user should be noted that these parameters properties and understand their trade offs between search accuracy and time. Enjoy approximated life 😉😉😉!
 						</p>
 					</section>
 					<section>
