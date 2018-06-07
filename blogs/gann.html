@@ -1,0 +1,367 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<link rel="shortcut icon" href="../images/avatar.png" type="image/vnd.microsoft.icon">
+		<title>Approximate Nearest Neighbor search in Golang - Takeshi Yoneda</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+		<!-- for og-->
+		<meta property="og:title" content="Approximate Nearest Neighbor search in Golang" />
+		<meta property="og:type" content="blog" />
+		<meta property="og:url" content="https://mathetake.github.io/blogs/gann.html" />
+		<meta property="og:image" content="./assets/gann/root_node_partitioning.png" />
+		<meta property="og:site_name"  content="Takeshi Yoneda" />
+
+		<meta name="twitter:site" content="@mathetake" />
+	</head>
+	<body id="top">
+
+		<!-- Header -->
+			<header id="header">
+					<a href="" class="image avatar"><img src="../images/avatar.png" alt="" /></a>
+					<h1><strong>Takeshi Yoneda (@mathetake)</strong></h1><br />
+					a software engineer who loves mathematics, machine learning and their real world applications.<br />
+					<br/>
+					<ul class="icons">
+						<li><a href="https://mathetake.github.io" class="icon fa-home"><span class="label">Home</span></a></li>
+						<li><a href="https://twitter.com/mathetake" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="https://github.com/mathetake" class="icon fa-github"><span class="label">Github</span></a></li>
+						<li><a href="http://mathetake.hatenablog.com" class="icon fa-rss"><span class="label">Blog</span></a></li>
+						<li><a href="mailto:cz.rk.t0415y.g@gmail.com" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+					</ul>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+					<section>
+						<header class="major">
+							<h1>Approximate Nearest Neighbor search in Go</h1>
+						</header>
+					</section>
+					<section>
+						<h2>
+							Introduction
+						</h2>
+						<p>
+							The aim of this post is to explain the basic algorithm and parameters to be tuned in <a href="https://github.com/mathetake/gann"><i>gann</i></a>, a library for <b> Approximate Nearest Neighbor(ANN) search</b> purely written in go. Although I'm gonna make every effort to make this post as easy as possible, the readers are assumed to have basic knowledge of math. Note that the algorithm is almost similar to that of <a href="https://github.com/Spotify/Annoy"><i>Annoy</i></a>, <i> a library for Approximate Nearest Neighbors in C++/Python optimized for memory usage and loading/saving to disk</i>. I would like to take this opportunity to express my appreciation to Annoy developers 🙏.
+
+						</p>
+						<p>
+							As of writing this post, <i>gann</i> only supports cosine similarity search, so I focus on describing the ANN search algorithm for cosine similarity metrics implemented in <i>gann</i>.
+						</p>
+						<p>
+							In the subsequence sections, we use the following notations
+							\begin{eqnarray*}
+								d  \ \ &:& \ \ \textrm {the dimension of feature vectors of items}& \\
+								I = \{v_1, \dots, v_N \} \subset \mathbb{R}^d &:& \ \  \textrm{items}& \\
+								q, v, w, x, y \subset \mathbb{R}^d  \ \ &:& \ \  \textrm{arbitrary $d$-dimensional vector} \\
+								S^d = \{v \in \mathbb{R}^d  \mid \|v\| =1 \} \ \ &:& \ \ d\textrm{-dimensional sphere} \\
+								 < v, w >\ \ &:&  \ \ \textrm{inner product between} \ v, w
+							\end{eqnarray*}
+							and we assume that the all of items(' vectors) are on $S^d$. This assumption is practically plausible because we usually have enough time to prepare search algorithms before execution. 
+						</p>
+					</section>
+					<section>
+						<h2>
+							Background - <i>why approximate search</i>
+						</h2>
+						<p>
+							Why do we need <i> approximate</i> nearest neighbor search algorithms? The reason is that the computation of the <i>exact</i> nearest neighbor search is really expensive if $N >> 0$ and $d >> 0$. 
+							<br>
+							In fact, its computational complexity is $O(Nd)$ since we have to calculate distances between a query vector $q$ and every item in $I$ (for $N$ times) and the complexity of each distance calculation is $O(d)$ for almost all major metrics like $L^2$ (Euclidean) metric
+							$$
+							\textrm{Eucledian}(x, y) := \sqrt{ (x_1 - y_1)^2 + (x_2 - y_2)^2 + \cdots + (x_d - y_d)^2}, \ \ \ x,y \in \mathbb{R}^d
+							$$
+							or cosine similarity metric
+							$$
+							\textrm{Cosine}(x, y) := \dfrac{\left< x,y \right>}{\|x\| \|y\|}, \ \ \ x,y \in \mathbb{R}^d.
+							$$
+						</p>
+						<p>
+							In the era of big data, situations where $N >> 0$ and $d >> 0$ are really common, but fortunately we often have practically optimal neighbors enough because $N >> 0$. That motivates us to develop approximate yet <i>low-latency</i> nearest neighbor search algorithms.
+						</p>
+					</section>
+					<section>
+						<h2>
+							Building a BSP tree on $d$-sphere
+						</h2>
+						<p>
+							Let us dive into the algorithm implemented in <i>Annoy/gann</i>. The goal of ANN search is to, given a query vector $q$, find a subset $I^\prime$ of $I$ consisting of items which are near (in sense of cosine similarity) enough to $q$. Since any $v_i$ is normalized, the similarity is calculated as
+							$$
+							\textrm{Cosine}(q, v_i) \ \ = \ \ \dfrac{\left< q, v_i \right>}{\|q\| } \ \ = \ \ C \times \left< q, v_i \right> \ \ \propto  \ \ \left< q, v_i \right>
+							$$ 
+							where $C$ is a constant factor which is independent of $v_i$, the problem is now broken down into 
+							<i>find items with larger inner product with $q$.</i>
+						</p>
+						<p>
+							The core idea of the algorithm in Annoy/gann is partitioning $\mathbb{R}^d$ (which is equivalent to buildings a BSP tree<a href="#BSP">[3]</a> on $\mathbb{R}^d$) so that similar items are  grouped together into a single partition.(a single leaf). Because of that, we can find optimal neighbors (neighbor partitions) by only calculating the distance between the partitions and a query vector, that is much more efficient than the case of exact search. Since we assumed that all the items are on $S^d$, it corresponds to building a tree on $S^d$. Let's get started with building a root node $\mathcal{N}$. 
+						</p>
+						<p>
+							First we consider $I$ as $\mathcal{N}$<i>'s items</i> $\mathcal{N}_{items} := I$ and execute $2$-means clustering algorithm on $\mathcal{N}_{items}$, and let $c_1, c_2$ the resulted centroids. Note that, in the implementation, we sample a subset of items for $2$-means clustering in order to speed up building steps (<a href="https://github.com/mathetake/gann/blob/0.1/item/arithmetic.go#L54-L67"> source</a>). Then we define the $\mathcal{N}$<i>'s vector</i>  $\mathcal{N}_v$ as 
+							$$
+							\mathcal{N}_v := \dfrac{c_1 - c_2}{\|c_1 - c_2 \|}
+							$$
+						</p>
+						<div align="center">
+							<img src="./assets/gann/root_node.png" alt="">
+						</div>
+						<p>
+							After that, we partition $\mathcal{N}_d$ into two child nodes $\mathcal{N}_{c_1}, \mathcal{N}_{c_2}$ as
+							$$
+							v \textrm{ belongs to } 
+							\begin{cases}
+								(\mathcal{N}_{c_1})_{items} \ \ \ \left< N_v, v \right> \geq  0 \\ 
+								(\mathcal{N}_{c_2})_{items} \ \ \ \ \textrm{o.w.}
+							\end{cases}
+							$$
+						</p>
+						<div align="center">
+							<img src="./assets/gann/root_node_partitioning.png" alt="">
+						</div>
+						<p>
+							Now we have finished building a root node $\mathcal{N}$ with items $N_{items} = I$, vector $N_v = \frac{c_1 - c_2}{\|c_1 - c_2 \|}$ and child nodes $\mathcal{N}_{c_1}, \mathcal{N}_{c_2}$ whose items are given by
+							$$
+							(\mathcal{N}_{c_1})_{items} = \{ v \in N_{items} \mid \left < N_v, v \right> \geq 0 \}, \\
+							(\mathcal{N}_{c_2})_{items} = \{ v \in N_{items} \mid \left < N_v, v \right> < 0 \}. \\
+							$$
+							Then, we recursively build child nodes in the same way until the number of children's items is less than the <b>threshold</b>, such nodes are called as <i> leaf</i>. Note that the variable <b><i>k</i></b> in <i>gann</i> represents the threshold <a href="https://github.com/mathetake/gann/blob/0.1/node/node.go#L40-L47"> source </a>.
+						</p>
+						<div align="center">
+							<img src="./assets/gann/recursive_build.png" alt="">
+						</div>
+						<p>
+							In the above example, we set the threshold to be $5$. Therefore the building steps continue until its children become leaf nodes with the number of items less than $5$, and we have the corresponding BSP tree: 
+						</p>
+						<div align="center">
+							<img src="./assets/gann/bsp_tree.png" alt="">
+						</div>
+						<p>
+							
+						</p>
+						<p>
+						In <i>gann</i>, the struct type of nodes is given by (<a href="https://github.com/mathetake/gann/blob/0.1/node/node.go#L19-L33"> source </a>)
+<pre><code class="prettyprint lang-go">type Node struct {
+	ID string
+	Vec item.Vector
+	NDescendants int
+	Children []*Node
+	Leaf []int64
+}
+</code></pre>
+							where <code>ID</code> is a uuid, <code>Vec</code> corresponds to $\mathcal{N}_v$, <code>NDescendants</code> equals $\# (\mathcal{N})_{items}$, <code>Children</code> is the slice of child nodes, and <code>Leaf</code> equals the slice of ids of items in $(\mathcal{N})_{items}$. Note that both <code>Children</code> and <code>Vec</code> are nil if and only if $\mathcal{N}$ is leaf node if and only if <code>Leaf</code> is not nil in our implementation (<a href="https://github.com/mathetake/gann/blob/0.1/node/node.go#L35-L37"> source </a>).
+						</p>
+					</section>
+					<section>
+						<h2>
+							The <i>Index</i> = the set of nodes in a forest of BSP trees
+						</h2>
+						<p>
+							In the previous section, I described how to build a BSP-tree on $d$-sphere. In <i>gann</i>, we need to build the struct called <code>Index</code> before executing ANN search. The definition of <code>Index</code> is given by (<a href="https://github.com/mathetake/gann/blob/0.1/index/index.go#L9-L29"> source </a>) 
+<pre><code class="prettyprint lang-go">type Index struct {
+	dim int
+	nTree int
+	k int
+
+	items        []item.Item
+	itemIDToItem map[int64]item.Item
+
+	nodes        []*node.Node
+	nodeIDToNode map[string]*node.Node
+
+	roots []*node.Node
+}
+
+</code></pre>
+							where <code>dim</code> is the dimension of the items' vector, <code>nTree</code> represents the number of BSP-trees we use for ANN search, <code>k</code> is the threshold explained above, and the others are obvious from their name.
+						</p>
+						<p>
+							As the first step, we initialize <code>Index</code> by giving <code>k</code>, <code>dim</code>, <code>items</code> to <code>Initialize</code> fucntion in <i>index</i> package (<a href="https://github.com/mathetake/gann/blob/0.1/index/index.go#L35-L66"> source </a>) 
+<pre><code class="prettyprint lang-go">// Initialize ... initialize Index strcut.
+func Initialize(rawItems [][]float32, d int, nTree int, k int, ...) (*Index, error) {
+	...
+} 
+</code></pre>				
+							and get <code>*Index</code>. Then we initialize <code>nTrees</code> root nodes (<a href="https://github.com/mathetake/gann/blob/0.1/index/impl.go#L143-L157"> source </a>), and build BSP-trees corresponding to the root nodes in parallel using multiple goroutines (<a href="https://github.com/mathetake/gann/blob/0.1/index/impl.go#L111-L141"> source </a>):
+<pre><code class="prettyprint lang-go">var wg sync.WaitGroup
+var m sync.Map  // used to collect all of nodes in the BSP-trees
+for i := range idx.roots {
+	wg.Add(1)
+	ii := i
+	go func() {
+		// build a BSP-tree as in the previous section
+		idx.roots[ii].Build(idx.items, idx.k, idx.dim, &m)
+		wg.Done()
+	}()
+}
+wg.Wait()
+</code></pre>
+							After building <code>nTrees</code> BSP-trees, we collect all of nodes in the BSP-trees which are built in parallel and append them to <code>Index.nodes</code> (<a href="https://github.com/mathetake/gann/blob/0.1/index/impl.go#L126-L139"> source </a>). <br>
+						</p>
+<pre><code class="prettyprint lang-go">m.Range(func(key, _ interface{}) bool {
+		n := key.(*node.Node)
+		idx.nodes = append(idx.nodes, n)
+		return true
+})
+</code></pre>
+					Now we may say that <b><code>Index</code> is the set of nodes in a forest of BSP trees whose items, size of leaf and number of trees are given by users.</b>
+					</section>
+					<section>
+						<h2>
+							Search phase
+						</h2>
+						<p>
+							Having built <code>Index</code> , we are ready to execute ANN search for any query vectors in $\mathbb{R}^d$. In <i>gann</i>'s search phase, there are two parameters given by users (<a href="https://github.com/mathetake/gann/blob/master/gann.go#L35"> source </a>)
+							<ol>
+								<li><code>num</code> : number of neighbor items</li>
+								<li><code>bucketScale</code> : scale of <code>bucket</code></li>
+							</ol>
+							where <code>bucket</code> is a slice of items whose length equals <code>int(num*bucketScale)</code>. In the search phase, we put items on leaves to <code>bucket</code> until it is full. More precisely, in <i>gann</i>'s search phase, we go through the following steps:
+						</p>
+						<ol>
+							<b>
+								<li>
+									Initialize a priority queue <code>pq</code> (<a href="https://github.com/mathetake/gann/blob/0.1/index/impl.go#L46"> source </a>)
+								</li>
+								<li>
+									Push all of root nodes to <code>pq</code> with $+\infty$ priority (<a href="https://github.com/mathetake/gann/blob/0.1/index/impl.go#L49-L56"> source </a>)
+								</li>
+								<li>
+									While <code>bucket</code> is full</i> (<a href=https://github.com/mathetake/gann/blob/0.1/index/impl.go#L85-L87"> source </a>), do ... 
+									<ol>
+										<li> 
+											Pop a node in <code>pq</code> of the highest priority (<a href="https://github.com/mathetake/gann/blob/0.1/index/impl.go#L62"> source </a>) : $O(log(n))$ complexity 
+										</li>
+										<li>
+											If: the popped node is leaf node, put all of its items into <code>bucket</code> (<a href="https://github.com/mathetake/gann/blob/0.1/index/impl.go#L69-L72"> source </a>)
+										</li>
+										<li>
+											Else:
+											<ol>
+												<li>
+													Calculate the distance between a query vector and the popped node's vector(<a href="https://github.com/mathetake/gann/blob/0.1/index/impl.go#L74"> source </a>)
+												</li>
+												<li>`
+													Push the child nodes to <code>pq</code> so that the one to which a query vector belongs has higher priority than the other child (<a href="https://github.com/mathetake/gann/blob/0.1/index/impl.go#L75-L82"> source </a>)
+												</li>
+											</ol>
+										</li>
+									</ol>
+								</li>
+							</ol>
+						</b>
+						<p>
+							Now we have approximate nearest neighbor items in <code>bucket</code> collected by traveling through BSP-trees. To close, let us do ... 
+							<b>
+								<ol>
+									<li>
+										Calculate exact distances between items in <code>bucket</code> and a query vector(<a href="https://github.com/mathetake/gann/blob/0.1/index/impl.go#L91-L96"> source </a>)
+									</li>
+									<li>
+										Sort all items in <code>bucket</code> by calculated distances(<a href="https://github.com/mathetake/gann/blob/0.1/index/impl.go#L99-L101"> source </a>)
+									</li>
+									<li>
+										Return the top <code>num</code> items(<a href="https://github.com/mathetake/gann/blob/0.1/index/impl.go#L104-L107"> source </a>)
+									</li>
+								</ol>
+							</b>
+							Easy, right? The point is that we can bound the number of exact distance calculations by our parameters such as <code>k</code>(size of leaf) and <code>bucketScale</code>. The larger <code>k</code> and <code>bucketScale</code> are, the more we have to calculate distances in order to reach more leaf nodes. This indicates that we will get more accurate search results with smaller <code>k</code> and larger <code>bucketScale</code> yet the more computation time we need.
+						</p>
+						<p>
+							Also the more trees we have, the more accurate results we will get. Every BSP-tree constructed by the above process consists of <b><i>random</i></b> splits, and therefore it is necessary to travel through multiple trees in the constructed forest to encounter <b><i>best</i></b> trees for each query.
+						</p>
+						<p>
+							The reason why we use priority queues and multiple trees is described in detailed at <a href="#annoyPost">[1]</a> which is really fun to read 😉.
+						</p>
+					</section>
+					<section>
+						<h2>
+							Conclusion <!-- parameters to be tunesの話も -->
+						</h2>
+						<p>
+							In this post, I have described the algorithm implemented in <i>gann</i> and the parameters to be set by users which affects the search performance. As I described above, there are the following parameters:
+							<ol>
+								<li>
+									<code>nTrees</code> ... the number of trees in <code> Index</code>. The larger it is, the more accurate result we will get. Users are recommended to set larger <code>nTrees</code> as possible as they can without <a href="https://en.wikipedia.org/wiki/Out_of_memory">OOM</a>.
+								</li>
+								<li>
+									<code>k</code> ... the size of item set in leaf nodes. The smaller it is, the more accurate result we will get but the longer computational time it causes.
+								</li>
+								<li>
+									<code>bucketScale</code> ... the scale of <code>bucket</code> length. More precisely the length of <code>bucket</code> is defined as <code>int(num*bucketScale)</code>. Therefore the larger <code>bucketScale</code> we set, the more accurate results we will get but the longer computational time it causes.
+								</li>
+							</ol>
+							every <i>gann</i> user should be noted that these parameters properties and understand their trade offs between search accuracy and time. Enjoy approximated life 😉😉😉!
+						</p>
+					</section>
+					<section>
+						<h2>
+							References
+						</h2>
+						<ol>
+							<li><a name="annoyPost" href="https://erikbern.com/2015/10/01/nearest-neighbors-and-vector-models-part-2-how-to-search-in-high-dimensional-spaces.html">Nearest neighbors and vector models – part 2 – algorithms and data structures</a></li>
+							<li><a href="https://github.com/spotify/annoy">Spotify/Annoy</a></li>
+							<li><a name="BSP" href="https://en.wikipedia.org/wiki/Binary_space_partitioning">Binary space partitioning - Wikipedia </a></li>
+						</ol>
+					</section>
+					<!-- edit here to make share buttons work-->
+					<section id="two">
+					<div align="center">
+					share :
+						<a href="http://twitter.com/share?url=https://mathetake.github.io/blogs/gann.html&text=Approximate Nearest Neighbor search in Go (by @mathetake )" class="icon fa-twitter">
+							<span class="label">Twitter</span> 
+						</a>
+						|
+						<a href="http://www.facebook.com/share.php?u=https://mathetake.github.io/blogs/gann.html" onclick="window.open(this.href, 'FBwindow', 'width=650, height=450, menubar=no, toolbar=no, scrollbars=yes'); return false;" class="icon fa-facebook">
+							<span class="label">Facebook</span> 
+						</a>
+						|
+						<a href="https://plus.google.com/share?url=https://mathetake.github.io/blogs/gann.html" class="icon fa-google-plus">
+							<span class="label">Twitter</span> 
+						</a>
+					</div>
+					</section>
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="copyright">
+						<li>Copyright 2018 &copy; mathetake</li><li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.poptrox.min.js"></script>
+			<script src="../assets/js/skel.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../assets/js/main.js"></script>
+			<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js' type='text/javascript'>    
+			    MathJax.Hub.Config({
+			        HTML: ["input/TeX","output/HTML-CSS"],
+			        TeX: { extensions: ["AMSmath.js","AMSsymbols.js"], 
+			               equationNumbers: { autoNumber: "AMS" } },
+			        extensions: ["tex2jax.js"],
+			        jax: ["input/TeX","output/HTML-CSS"],
+			        tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+			                   displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+			                   processEscapes: true },
+			        "HTML-CSS": { availableFonts: ["TeX"],
+			                      linebreaks: { automatic: true } }
+			    });
+			</script>
+			<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+	</body>
+</html>
