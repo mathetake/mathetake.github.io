@@ -274,7 +274,7 @@ wg.Wait()
 									</li>
 								</ol>
 							</b>
-							Easy, right? The point is that we can bound the number of exact distance calculations by our parameters such as <code>k</code>(size of leaf) and <code>bucketScale</code>. The larger <code>k</code> and <code>bucketScale</code> are, the more we have to calculate distances in order to reach more leaf nodes. This indicates that we will get more accurate search results with smaller <code>k</code> and larger <code>bucketScale</code> yet the more computation time we need.
+							Easy, right? The point is that we can bound the number of exact distance calculations by our parameters such as <code>k</code>(size of leaf) and <code>bucketScale</code>. With smaller <code>k</code> and larger<code>bucketScale</code>, we have to calculate distances more in order to fill <code>bucket</code>. That means we will get more accurate search results yet the more computation time we need.
 						</p>
 						<p>
 							Also the more trees we have, the more accurate results we will get. Every BSP-tree constructed by the above process consists of <b><i>random</i></b> splits, and therefore it is necessary to travel through multiple trees in the constructed forest to encounter <b><i>best</i></b> trees for each query.
