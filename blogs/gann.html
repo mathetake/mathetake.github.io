@@ -68,7 +68,7 @@
 								S^d = \{v \in \mathbb{R}^d  \mid \|v\| =1 \} \ \ &:& \ \ d\textrm{-dimensional sphere} \\
 								 < v, w >\ \ &:&  \ \ \textrm{inner product between} \ v, w
 							\end{eqnarray*}
-							and we assume that the all of items(' vectors) are on $S^d$. This assumption is practically plausible because we usually have enough time to prepare search algorithms before execution. 
+							and we assume that the all of items(' vectors) are on $S^d$. This assumption is practically plausible because we usually have enough time to prepare search algorithms before execution.
 						</p>
 					</section>
 					<section>
@@ -100,8 +100,7 @@
 							$$
 							\textrm{Cosine}(q, v_i) \ \ = \ \ \dfrac{\left< q, v_i \right>}{\|q\| } \ \ = \ \ C \times \left< q, v_i \right> \ \ \propto  \ \ \left< q, v_i \right>
 							$$ 
-							where $C$ is a constant factor which is independent of $v_i$, the problem is now broken down into 
-							<i>find items with larger inner product with $q$.</i>
+							where $C$ is a constant factor which is independent of $v_i$. Therefore the problem is now reinterpreted as "find items which have larger inner product with $q$".</i>
 						</p>
 						<p>
 							The core idea of the algorithm in Annoy/gann is partitioning $\mathbb{R}^d$ (which is equivalent to buildings a BSP tree<a href="#BSP">[3]</a> on $\mathbb{R}^d$) so that similar items are  grouped together into a single partition.(a single leaf). Because of that, we can find optimal neighbors (neighbor partitions) by only calculating the distance between the partitions and a query vector, that is much more efficient than the case of exact search. Since we assumed that all the items are on $S^d$, it corresponds to building a tree on $S^d$. Let's get started with building a root node $\mathcal{N}$. 
