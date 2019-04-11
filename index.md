@@ -12,7 +12,7 @@
 
 ## About
 
-Takeshi Yoneda is a Japanese software engineer working in Tokyo. I was a graduate student at Department of Mathematics 
+Takeshi Yoneda is a Japanese software engineer working in Tokyo. He was a graduate student at Department of Mathematics 
 at Osaka University and doing research on pure mathematics in the field of differential complex geometry. 
 Then I started working as a machine learning engineer at Gunosy Inc. Now he is in charge of every engineering problems with
 related to recommendation systems. For example, these includes high performance server side implementation, 
@@ -62,20 +62,20 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
 
 ## Open source activities
 
-- _eks-asg-metrics-cw-registerer_ https://github.com/mathetake/eks-asg-metrics-cw-registerer
+- _eks-asg-metrics-cw-registerer_: [https://github.com/mathetake/eks-asg-metrics-cw-registerer](https://github.com/mathetake/eks-asg-metrics-cw-registerer)
     - A docker image to register metrics related to the health of AutoScalingGroup/EKS onto CloudWatch Metrics
     - __used in the production api servers in Gunosy Inc.__
-- _doogle_ https://github.com/mathetake/doogle
+- _doogle_: [https://github.com/mathetake/doogle](https://github.com/mathetake/doogle)
     - a Proof of Concept software of decentralized search engine based on gRPC written in Go.
-- _gann_ https://github.com/mathetake/gann
+- _gann_: [https://github.com/mathetake/gann](https://github.com/mathetake/gann)
     - a package for approximate nearest neighbor search purely written in golang
     - __used in the production api servers in Gunosy Inc.__
-- _go-walker_ https://github.com/mathetake/go-walker
+- _go-walker_: [https://github.com/mathetake/go-walker](https://github.com/mathetake/go-walker)
     - a tiny package for Walker's sampling method in Go
-- _intergo_ https://github.com/mathetake/intergo
+- _intergo_: [https://github.com/mathetake/intergo](https://github.com/mathetake/intergo)
     - a package for interleaving / multileaving ranking generation in go.
     - __used in the production api servers in Gunosy Inc.__
-- _senbei_ https://github.com/mathetake/senbei
+- _senbei_: [https://github.com/mathetake/senbei](https://github.com/mathetake/senbei)
     - a protocol buffers' third party plugin for generating gRPC cli snippets
 - contributed to [_gonum_](https://github.com/gonum/gonum) project
     - implemented edge weighted PageRank algorithms
