@@ -58,7 +58,7 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
 ### Data Science skills
 - machine learning algorithms and its workflow ([I've published the book about these](https://www.amazon.co.jp/dp/4798150967))
 - recommendation algorithms
-- natural language processing knowledge (required to implement news )
+- natural language processing knowledge for recommendation systems
 - data science tools: pandas, scikit-leanr, numpy, scipy, etc.
 
 ## Qualification
