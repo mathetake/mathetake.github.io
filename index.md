@@ -2,7 +2,7 @@
 
 ![https://mathetake.github.io/images/avatar.jpg](https://mathetake.github.io/images/avatar.jpg)
 
-## information
+## Information
 
 - Mail: `cz.rk.t0415y.g AT gmail.com`
 - Github: [https://github.com/mathetake](https://github.com/mathetake)
@@ -15,13 +15,21 @@
 Takeshi Yoneda is a Japanese software engineer working in Tokyo. He was a graduate student at Department of Mathematics 
 at Osaka University and doing research on pure mathematics in the field of differential complex geometry. 
 Then I started working as a machine learning engineer at Gunosy Inc. Now he is in charge of every engineering problems with
-related to recommendation systems. For example, these includes high performance server side implementation, 
-infrastructure engineering from AWS vpc setups to Kubernetes cluster management and building recommendation algorithms. 
+related to recommendation systems. For example, these include high performance server side implementation, 
+infrastructure engineering from AWS vpc setups to Kubernetes cluster management and develop recommendation algorithms. 
 He is a golang lover and recognized as a Certified Kubernetes Application Engineer([Digital Badge](https://www.youracclaim.com/badges/6c0dbb5e-48c8-4e3b-a83a-a91fda111eaf/public_url)). 
 
 ## Employment History
 
 #### April, 2017 - Current: software engineer at Gunosy Inc.
+- build machine learning models, recommendation algorithms
+- data flow implementation by using Apache Spark, digdag, Presto.
+- develop high performance api servers (including gRPC)
+- develop search engine system on top of Elasticsearch
+- develop server side infrastructure from scratch
+    - from AWS vpc setup to Kubernetes Cluster setup (on EKS) 
+- fully working on AWS
+    - EMR, ECS, EKS, Kinesis, Lambda, Dynamodb, DAX, ASG, ESS, etc.
 
 #### February, 2017 - March, 2017:software engineer intern at Gunosy Inc.
 - build some machine learning models for news article recommendation
@@ -45,7 +53,7 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
 ### Software
 - love: Kubernetes, Envoy, memcached, gRPC
 - proficient: AWS, Docker, Elasticsearch, CircleCi, git, etc.
-- familiar: datadog, fluentd, etc.
+- familiar: digdag, datadog, fluentd, Apache Spark, etc.
 
 ### Data Science skills
 - machine learning algorithms and its workflow ([I've published the book about these](https://www.amazon.co.jp/dp/4798150967))
@@ -83,10 +91,10 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
     
 ## Talks and Publications
 - The mathematical model of user behavioral dynamics and its realization on AWS [[slide](https://speakerdeck.com/mathetake/yuzaxing-dong-gacheng-suli-xue-xi-falseshi-xian-to-sorewoyong-itatui-jian-sisutemuwozhi-eruaws-akitekutiya)] [[video](https://www.youtube.com/watch?v=ACHKLNfjSUA&index=50&t=0s&list=PLzWGOASvSx6Gm88FXmryU-T1WKC3-SOl2)]
-    - Talk at [AWS Summit Tokyo 2018](https://aws.amazon.com/jp/summit2018-report/)
+    - a talk at [AWS Summit Tokyo 2018](https://aws.amazon.com/jp/summit2018-report/)
 - 現場で使える!Python機械学習入門 機械学習アルゴリズムの理論と実践 [[amazon](https://www.amazon.co.jp/dp/4798150967)]
     - a book about machine learning algorithms and data science workflow (I'm main author)
 - 機械学習エンジニアを目指すには - Software Design 2017年8月号 [[amazon](https://www.amazon.co.jp/%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3-2017%E5%B9%B4-08-%E6%9C%88%E5%8F%B7-%E9%9B%91%E8%AA%8C/dp/B07289LMW8)]
     - an article about `How to become a machine learning engineer`
 - ユーザー行動の数理モデルと高速推薦システム [[slide](https://speakerdeck.com/mathetake/yusaxing-dong-falseshu-li-moteruto-gao-su-tui-jian-sisutemu)]
-    - Talk at [Battle conference under 30, 2018](https://bcu30.jp/archives.html)
+    - a talk at [Battle conference under 30, 2018](https://bcu30.jp/archives.html)
