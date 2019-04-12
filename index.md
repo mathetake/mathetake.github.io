@@ -48,12 +48,13 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
 
 ### Programming Languages 
 - proficient: Go, Python (ordered by proficiency)
-- Familiar: Kotlin, Scala, C++, Rust, Zig (ordered by proficiency)
+- familiar: Kotlin, Scala, C++, Rust, Zig (ordered by proficiency)
 
-### Software
-- love: Kubernetes, Envoy, memcached, gRPC
-- proficient: AWS, Docker, Elasticsearch, CircleCi, git, etc.
-- familiar: digdag, datadog, fluentd, Apache Spark, etc.
+### Tools, Platforms, ...
+- love
+    - Kubernetes, Envoy, memcached, gRPC
+- familiar
+    - AWS, Docker, Elasticsearch, CircleCi, git, terraform, digdag, datadog, fluentd, Apache Spark, etc.
 
 ### Data Science skills
 - machine learning algorithms and its workflow ([I've published the book about these](https://www.amazon.co.jp/dp/4798150967))
