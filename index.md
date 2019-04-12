@@ -8,7 +8,8 @@
 - Github: [https://github.com/mathetake](https://github.com/mathetake)
 - Twitter: [https://twitter.com/mathetake](https://twitter.com/mathetake)
 - SlideShare: [https://www.slideshare.net/TakeshiYoneda](https://www.slideshare.net/TakeshiYoneda)
-- SpeakerDeck [https://speakerdeck.com/mathetake](https://speakerdeck.com/mathetake)
+- SpeakerDeck: [https://speakerdeck.com/mathetake](https://speakerdeck.com/mathetake)
+- Medium: [https://medium.com/@mathetake](https://medium.com/@mathetake)
 
 ## About
 
@@ -48,7 +49,7 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
 
 ### Programming Languages 
 - proficient: Go, Python (ordered by proficiency)
-- familiar: Kotlin, Scala, C++, Rust, Zig (ordered by proficiency)
+- familiar: Kotlin, Javascript(react/vue), Scala, C++, Rust, Zig (ordered by proficiency)
 
 ### Tools, Platforms, ...
 - love
