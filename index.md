@@ -15,7 +15,7 @@
 
 Takeshi Yoneda is a Japanese software engineer working in Tokyo. He was a graduate student at Department of Mathematics 
 at Osaka University and doing research on pure mathematics in the field of differential complex geometry. 
-Then I started working as a machine learning engineer at Gunosy Inc. Now he is in charge of every engineering problems with
+After he received the degree of MSci. in mathematic, he started working as a machine learning engineer at Gunosy Inc. Now he is in charge of every engineering problems with
 related to recommendation systems. For example, these include high performance server side implementation, 
 infrastructure engineering from AWS vpc setups to Kubernetes cluster management and developing recommendation algorithms. 
 He is a golang lover and recognized as a Certified Kubernetes Application Engineer([Digital Badge](https://www.youracclaim.com/badges/6c0dbb5e-48c8-4e3b-a83a-a91fda111eaf/public_url)). 
