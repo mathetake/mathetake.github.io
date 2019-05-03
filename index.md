@@ -1,6 +1,6 @@
 # Takeshi Yoneda (@mathetake)
 
-<img width="200" alt="portfolio_view" src="https://mathetake.github.io/images/avatar.jpg">
+<img width="400" alt="portfolio_view" src="https://mathetake.github.io/images/avatar.jpg">
 
 ## Information
 
@@ -25,7 +25,7 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
 #### April, 2017 - Current: software engineer at Gunosy Inc.
 - build machine learning models, recommendation algorithms
 - data flow implementation by using Apache Spark, digdag, Presto.
-- develop high performance api servers (including gRPC)
+- develop high performance/observable microservices with Envoyproxy, gRPC, ...
 - develop search engine system on top of Elasticsearch
 - develop server side infrastructure from scratch
     - from AWS vpc setup to Kubernetes Cluster setup (on EKS) 
