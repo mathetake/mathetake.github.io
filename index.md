@@ -1,6 +1,6 @@
 # Takeshi Yoneda (@mathetake)
 
-<img width="400" alt="portfolio_view" src="https://mathetake.github.io/images/avatar.jpg">
+<img width="200" alt="portfolio_view" src="https://mathetake.github.io/images/avatar.jpg">
 
 ## Information
 
@@ -49,7 +49,7 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
 
 ### Programming Languages 
 - proficient: Go, Python (ordered by proficiency)
-- familiar: Kotlin, Javascript(react/vue), Scala, C++, Rust, Zig (ordered by proficiency)
+- familiar: Kotlin, Javascript(react/vue), Scala, C++, Rust, Zig
 
 ### Tools, Platforms, ...
 - love
