@@ -4,6 +4,8 @@
 
 ## Information
 
+My resume can be available [here](https://mathetake.github.io/assets/pdfs/resume.pdf).
+
 - Mail: `cz.rk.t0415y.g AT gmail.com`
 - Github: [https://github.com/mathetake](https://github.com/mathetake)
 - Twitter: [https://twitter.com/mathetake](https://twitter.com/mathetake)
@@ -55,7 +57,7 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
 - love
     - Kubernetes, Envoy, memcached, gRPC
 - familiar
-    - AWS, Docker, Elasticsearch, CircleCi, git, terraform, digdag, datadog, fluentd, Apache Spark, etc.
+    - AWS, Docker, Elasticsearch, CircleCi, git, redis, terraform, digdag, datadog, fluentd, Apache Spark, etc.
 
 ### Data Science skills
 - machine learning algorithms and its workflow ([I've published the book about these](https://www.amazon.co.jp/dp/4798150967))
