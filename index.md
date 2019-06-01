@@ -41,7 +41,7 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
     - Research interests: differential geometry, complex geometry, global analysis, differential topology
     - Thesis: [ADHM construction on hyper-Kahler manifolds of type $A_\infty$](https://mathetake.github.io/assets/pdfs/adhm-construction-hyper.pdf)
     - Supervisor: [Prof. Ryushi Goto](http://www.math.sci.osaka-u.ac.jp/eng/staff_goto.html)
-    - As a side project, I studied theoretical aspects of machine learning and bayesian statistics. ex: Prof. Watanabe's [Algebraic Geometry and Statistical Learning Theory](http://watanabe-www.math.dis.titech.ac.jp/users/swatanab/ag-slt.html) 
+    - As a side project, I personally studied theoretical aspects of machine learning and bayesian statistics. ex: Prof. Watanabe's [Algebraic Geometry and Statistical Learning Theory](http://watanabe-www.math.dis.titech.ac.jp/users/swatanab/ag-slt.html) 
 -  April, 2011 - March, 2015: The University of Tsukuba, The School of Science and Engineering, Department of mathematics
 -  April, 2008 - March, 2011: Hamamatsu Minami High School
  
@@ -71,7 +71,7 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
 <img width="400" alt="ckad_certificate" src="https://mathetake.github.io/images/ckad-certificate.jpg">
 
 
-## Open source activities
+## Open source projects
 
 - _eks-asg-metrics-cw-registerer_: [https://github.com/mathetake/eks-asg-metrics-cw-registerer](https://github.com/mathetake/eks-asg-metrics-cw-registerer)
     - A docker image to register metrics related to the health of AutoScalingGroup/EKS onto CloudWatch Metrics
@@ -88,8 +88,6 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
     - __used in the production api servers in Gunosy Inc.__
 - _senbei_: [https://github.com/mathetake/senbei](https://github.com/mathetake/senbei)
     - a protocol buffers' third party plugin for generating gRPC cli snippets
-- contributed to [_gonum_](https://github.com/gonum/gonum) project
-    - implemented edge weighted PageRank algorithms
 
     
 ## Talks and Publications
