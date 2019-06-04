@@ -4,8 +4,6 @@
 
 ## Information
 
-My resume can be available [here](https://mathetake.github.io/assets/pdfs/resume.pdf).
-
 - Mail: `cz.rk.t0415y.g AT gmail.com`
 - Github: [https://github.com/mathetake](https://github.com/mathetake)
 - Twitter: [https://twitter.com/mathetake](https://twitter.com/mathetake)
