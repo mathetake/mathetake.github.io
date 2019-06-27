@@ -1,6 +1,6 @@
 # Takeshi Yoneda (@mathetake)
 
-![https://mathetake.github.io/images/avatar.jpg](https://mathetake.github.io/images/avatar.jpg)
+<img width="200" alt="portfolio_view" src="https://mathetake.github.io/images/avatar.jpg">
 
 ## Information
 
@@ -8,15 +8,16 @@
 - Github: [https://github.com/mathetake](https://github.com/mathetake)
 - Twitter: [https://twitter.com/mathetake](https://twitter.com/mathetake)
 - SlideShare: [https://www.slideshare.net/TakeshiYoneda](https://www.slideshare.net/TakeshiYoneda)
-- SpeakerDeck [https://speakerdeck.com/mathetake](https://speakerdeck.com/mathetake)
+- SpeakerDeck: [https://speakerdeck.com/mathetake](https://speakerdeck.com/mathetake)
+- Medium: [https://medium.com/@mathetake](https://medium.com/@mathetake)
 
 ## About
 
 Takeshi Yoneda is a Japanese software engineer working in Tokyo. He was a graduate student at Department of Mathematics 
 at Osaka University and doing research on pure mathematics in the field of differential complex geometry. 
-Then I started working as a machine learning engineer at Gunosy Inc. Now he is in charge of every engineering problems with
+After he received the degree of MSci. in mathematics, he started working as a machine learning engineer at Gunosy Inc. Now he is in charge of every engineering problems
 related to recommendation systems. For example, these include high performance server side implementation, 
-infrastructure engineering from AWS vpc setups to Kubernetes cluster management and develop recommendation algorithms. 
+infrastructure engineering from AWS vpc setups to Kubernetes cluster management and developing recommendation algorithms. 
 He is a golang lover and recognized as a Certified Kubernetes Application Engineer([Digital Badge](https://www.youracclaim.com/badges/6c0dbb5e-48c8-4e3b-a83a-a91fda111eaf/public_url)). 
 
 ## Employment History
@@ -24,7 +25,7 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
 #### April, 2017 - Current: software engineer at Gunosy Inc.
 - build machine learning models, recommendation algorithms
 - data flow implementation by using Apache Spark, digdag, Presto.
-- develop high performance api servers (including gRPC)
+- develop high performance/observable microservices with Envoyproxy, gRPC, ...
 - develop search engine system on top of Elasticsearch
 - develop server side infrastructure from scratch
     - from AWS vpc setup to Kubernetes Cluster setup (on EKS) 
@@ -40,7 +41,7 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
     - Research interests: differential geometry, complex geometry, global analysis, differential topology
     - Thesis: [ADHM construction on hyper-Kahler manifolds of type $A_\infty$](https://mathetake.github.io/assets/pdfs/adhm-construction-hyper.pdf)
     - Supervisor: [Prof. Ryushi Goto](http://www.math.sci.osaka-u.ac.jp/eng/staff_goto.html)
-    - As a side project, I studied theoretical aspects of machine learning and bayesian statistics. ex: Prof. Watanabe's [Algebraic Geometry and Statistical Learning Theory](http://watanabe-www.math.dis.titech.ac.jp/users/swatanab/ag-slt.html) 
+    - As a side project, I personally studied theoretical aspects of machine learning and bayesian statistics. ex: Prof. Watanabe's [Algebraic Geometry and Statistical Learning Theory](http://watanabe-www.math.dis.titech.ac.jp/users/swatanab/ag-slt.html) 
 -  April, 2011 - March, 2015: The University of Tsukuba, The School of Science and Engineering, Department of mathematics
 -  April, 2008 - March, 2011: Hamamatsu Minami High School
  
@@ -48,17 +49,17 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
 
 ### Programming Languages 
 - proficient: Go, Python (ordered by proficiency)
-- familiar: Kotlin, Scala, C++, Rust, Zig (ordered by proficiency)
+- familiar: Kotlin, Javascript(react/vue), Scala, C++, Rust, Zig
 
 ### Tools, Platforms, ...
 - love
     - Kubernetes, Envoy, memcached, gRPC
 - familiar
-    - AWS, Docker, Elasticsearch, CircleCi, git, terraform, digdag, datadog, fluentd, Apache Spark, etc.
+    - AWS, Docker, Elasticsearch, CircleCi, git, redis, terraform, digdag, datadog, fluentd, Apache Spark, etc.
 
 ### Data Science skills
 - machine learning algorithms and its workflow ([I've published the book about these](https://www.amazon.co.jp/dp/4798150967))
-- recommendation algorithms
+- information retrieval/recommendation algorithms
 - natural language processing knowledge for recommendation systems
 - data science tools: pandas, scikit-leanr, numpy, scipy, etc.
 
@@ -66,14 +67,15 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
 
 - TOEIC: 940/990 (December, 2016)
 - Certified Kubernetes Application Developer: April, 2019 -  ([Digital Badge](https://www.youracclaim.com/badges/6c0dbb5e-48c8-4e3b-a83a-a91fda111eaf/public_url))
-![https://mathetake.github.io//images/ckad-certificate.jpg](/images/ckad-certificate.jpg)
+
+<img width="400" alt="ckad_certificate" src="https://mathetake.github.io/images/ckad-certificate.jpg">
 
 
-## Open source activities
+## Open source projects
 
 - _eks-asg-metrics-cw-registerer_: [https://github.com/mathetake/eks-asg-metrics-cw-registerer](https://github.com/mathetake/eks-asg-metrics-cw-registerer)
     - A docker image to register metrics related to the health of AutoScalingGroup/EKS onto CloudWatch Metrics
-    - __used in the production api servers in Gunosy Inc.__
+    - __used in the production kubernetes clusters in Gunosy Inc.__
 - _doogle_: [https://github.com/mathetake/doogle](https://github.com/mathetake/doogle)
     - a Proof of Concept software of decentralized search engine based on gRPC written in Go.
 - _gann_: [https://github.com/mathetake/gann](https://github.com/mathetake/gann)
@@ -87,8 +89,6 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
     - __used in the production api servers in Gunosy Inc.__
 - _senbei_: [https://github.com/mathetake/senbei](https://github.com/mathetake/senbei)
     - a protocol buffers' third party plugin for generating gRPC cli snippets
-- contributed to [_gonum_](https://github.com/gonum/gonum) project
-    - implemented edge weighted PageRank algorithms
 
 ## Publications
 - 現場で使える!Python機械学習入門 機械学習アルゴリズムの理論と実践 [[amazon](https://www.amazon.co.jp/dp/4798150967)]
