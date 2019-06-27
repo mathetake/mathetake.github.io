@@ -83,19 +83,25 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
     - a tiny package for Walker's sampling method in Go
 - _intergo_: [https://github.com/mathetake/intergo](https://github.com/mathetake/intergo)
     - a package for interleaving / multileaving ranking generation in go.
+    - __This package is used in the experiments in our paper "Greedy Optimized Multileaving for Personalization" which has been accepted to RecSys 2019__.
     - __used in the production api servers in Gunosy Inc.__
 - _senbei_: [https://github.com/mathetake/senbei](https://github.com/mathetake/senbei)
     - a protocol buffers' third party plugin for generating gRPC cli snippets
 - contributed to [_gonum_](https://github.com/gonum/gonum) project
     - implemented edge weighted PageRank algorithms
 
-    
-## Talks and Publications
-- The mathematical model of user behavioral dynamics and its realization on AWS [[slide](https://speakerdeck.com/mathetake/yuzaxing-dong-gacheng-suli-xue-xi-falseshi-xian-to-sorewoyong-itatui-jian-sisutemuwozhi-eruaws-akitekutiya)] [[video](https://www.youtube.com/watch?v=ACHKLNfjSUA&index=50&t=0s&list=PLzWGOASvSx6Gm88FXmryU-T1WKC3-SOl2)]
-    - a talk at [AWS Summit Tokyo 2018](https://aws.amazon.com/jp/summit2018-report/)
+## Publications
 - 現場で使える!Python機械学習入門 機械学習アルゴリズムの理論と実践 [[amazon](https://www.amazon.co.jp/dp/4798150967)]
     - a book about machine learning algorithms and data science workflow (I'm main author)
 - 機械学習エンジニアを目指すには - Software Design 2017年8月号 [[amazon](https://www.amazon.co.jp/%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3-2017%E5%B9%B4-08-%E6%9C%88%E5%8F%B7-%E9%9B%91%E8%AA%8C/dp/B07289LMW8)]
     - an article about `How to become a machine learning engineer`
+    
+## Talks
+- The mathematical model of user behavioral dynamics and its realization on AWS [[slide](https://speakerdeck.com/mathetake/yuzaxing-dong-gacheng-suli-xue-xi-falseshi-xian-to-sorewoyong-itatui-jian-sisutemuwozhi-eruaws-akitekutiya)] [[video](https://www.youtube.com/watch?v=ACHKLNfjSUA&index=50&t=0s&list=PLzWGOASvSx6Gm88FXmryU-T1WKC3-SOl2)]
+    - a talk at [AWS Summit Tokyo 2018](https://aws.amazon.com/jp/summit2018-report/)
 - ユーザー行動の数理モデルと高速推薦システム [[slide](https://speakerdeck.com/mathetake/yusaxing-dong-falseshu-li-moteruto-gao-su-tui-jian-sisutemu)]
     - a talk at [Battle conference under 30, 2018](https://bcu30.jp/archives.html)
+
+## Research Papers (refereed)
+- Kojiro Iizuka, __Takeshi Yoneda__ and Yoshifumi Seki. "Greedy Optimized Multileaving for Personalization"
+Proceedings of the 13th ACM Conference on Recommender Systems. ACM, 2019.  (to appear)
