@@ -10,6 +10,7 @@
 - SlideShare: [https://www.slideshare.net/TakeshiYoneda](https://www.slideshare.net/TakeshiYoneda)
 - SpeakerDeck: [https://speakerdeck.com/mathetake](https://speakerdeck.com/mathetake)
 - Medium: [https://medium.com/@mathetake](https://medium.com/@mathetake)
+- Linkedin: [https://www.linkedin.com/in/mathetake/](https://www.linkedin.com/in/mathetake/)
 
 ## About
 
