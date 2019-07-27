@@ -105,4 +105,5 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
 
 ## Research Papers (refereed)
 - Kojiro Iizuka, __Takeshi Yoneda__ and Yoshifumi Seki. "Greedy Optimized Multileaving for Personalization"
-Proceedings of the 13th ACM Conference on Recommender Systems. ACM, 2019.  (to appear)
+Proceedings of the 13th ACM Conference on Recommender Systems. ACM, 2019.
+- __Takeshi Yoneda__, Shunsuke Kozawa, Keisuke Osone, Yukinori Koide, Yosuke Abe, and Yoshifumi Seki. "Algorithm and Architecture of Immediate Personalized News Recommendation" 2019 IEEE/WIC/ACM International Conference on Web Intelligence (WI). IEEE, 2019.
