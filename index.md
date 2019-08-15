@@ -74,22 +74,15 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
 
 ## Open source projects
 
-- _eks-asg-metrics-cw-registerer_: [https://github.com/mathetake/eks-asg-metrics-cw-registerer](https://github.com/mathetake/eks-asg-metrics-cw-registerer)
-    - A docker image to register metrics related to the health of AutoScalingGroup/EKS onto CloudWatch Metrics
-    - __used in the production kubernetes clusters in Gunosy Inc.__
 - _doogle_: [https://github.com/mathetake/doogle](https://github.com/mathetake/doogle)
     - a Proof of Concept software of decentralized search engine based on gRPC written in Go.
 - _gann_: [https://github.com/mathetake/gann](https://github.com/mathetake/gann)
     - a package for approximate nearest neighbor search purely written in golang
     - __used in the production api servers in Gunosy Inc.__
-- _go-walker_: [https://github.com/mathetake/go-walker](https://github.com/mathetake/go-walker)
-    - a tiny package for Walker's sampling method in Go
 - _intergo_: [https://github.com/mathetake/intergo](https://github.com/mathetake/intergo)
     - a package for interleaving / multileaving ranking generation in go.
     - __This package is used in the experiments in our paper "Greedy Optimized Multileaving for Personalization" which has been accepted to RecSys 2019__.
     - __used in the production api servers in Gunosy Inc.__
-- _senbei_: [https://github.com/mathetake/senbei](https://github.com/mathetake/senbei)
-    - a protocol buffers' third party plugin for generating gRPC cli snippets
 
 ## Publications
 - 現場で使える!Python機械学習入門 機械学習アルゴリズムの理論と実践 [[amazon](https://www.amazon.co.jp/dp/4798150967)]
