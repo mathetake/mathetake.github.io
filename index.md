@@ -1,6 +1,6 @@
 # Takeshi Yoneda (@mathetake)
 
-<img width="200" alt="portfolio_view" src="https://mathetake.github.io/images/avatar.jpg">
+<img width="280" alt="portfolio_view" src="https://mathetake.github.io/images/avatar.jpg">
 
 ## Information
 
