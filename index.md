@@ -49,8 +49,7 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
 ## Skills
 
 ### Programming Languages 
-- proficient: Go, Python (ordered by proficiency)
-- familiar: Kotlin, Javascript(react/vue), Scala, C++, Rust, Zig
+Go, Python, Rust, Kotlin (ordered by proficiency)
 
 ### Tools, Platforms, ...
 - love
