@@ -98,4 +98,4 @@ Go, Python, Rust, Kotlin (ordered by proficiency)
 ## Research Papers (refereed)
 - Kojiro Iizuka, __Takeshi Yoneda__ and Yoshifumi Seki. "Greedy Optimized Multileaving for Personalization"
 Proceedings of the 13th ACM Conference on Recommender Systems. ACM, 2019.
-- __Takeshi Yoneda__, Shunsuke Kozawa, Keisuke Osone, Yukinori Koide, Yosuke Abe, and Yoshifumi Seki. "Algorithm and Architecture of Immediate Personalized News Recommendation" 2019 IEEE/WIC/ACM International Conference on Web Intelligence (WI). IEEE, 2019.
+- __Takeshi Yoneda__, Shunsuke Kozawa, Keisuke Osone, Yukinori Koide, Yosuke Abe, and Yoshifumi Seki. "Algorithms and System Architecture for Immediate Personalized News Recommendations" 2019 IEEE/WIC/ACM International Conference on Web Intelligence (WI). IEEE, 2019.
