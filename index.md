@@ -23,7 +23,12 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
 
 ## Employment History
 
-#### April, 2017 - Current: software engineer at Gunosy Inc.
+#### October, 2019 - Current: software engineer at DMM.com
+- lead Machine Learning infrastructure (MLOps) team
+- build k8s/AWS infrastructure from scratch using terraform.
+- write an api server in Go which accepts every requests to the machine learning platform and works as a proxy.
+
+#### April, 2017 - September, 2019: software engineer at Gunosy Inc.
 - build machine learning models, recommendation algorithms
 - data flow implementation by using Apache Spark, digdag, Presto.
 - develop high performance/observable microservices with Envoyproxy, gRPC, ...
@@ -49,13 +54,13 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
 ## Skills
 
 ### Programming Languages 
-Go, Python, Rust, Kotlin (ordered by proficiency)
+Go, HCL(for terraform), Rust, Python, Kotlin (ordered by proficiency)
 
 ### Tools, Platforms, ...
 - love
-    - Kubernetes, Envoy, memcached, gRPC
+    - Kubernetes, Docker, Envoyproxy, AWS, terraform, datadog
 - familiar
-    - AWS, Docker, Elasticsearch, CircleCi, git, redis, terraform, digdag, datadog, fluentd, Apache Spark, etc.
+    - gRPC, Elasticsearch, CircleCi, redis, digdag, fluentd, Apache Spark, etc.
 
 ### Data Science skills
 - machine learning algorithms and its workflow ([I've published the book about these](https://www.amazon.co.jp/dp/4798150967))
@@ -98,4 +103,5 @@ Go, Python, Rust, Kotlin (ordered by proficiency)
 ## Research Papers (refereed)
 - Kojiro Iizuka, __Takeshi Yoneda__ and Yoshifumi Seki. "Greedy Optimized Multileaving for Personalization"
 Proceedings of the 13th ACM Conference on Recommender Systems. ACM, 2019.
-- __Takeshi Yoneda__, Shunsuke Kozawa, Keisuke Osone, Yukinori Koide, Yosuke Abe, and Yoshifumi Seki. "Algorithms and System Architecture for Immediate Personalized News Recommendations" 2019 IEEE/WIC/ACM International Conference on Web Intelligence (WI). IEEE, 2019.
+- __Takeshi Yoneda__, Shunsuke Kozawa, Keisuke Osone, Yukinori Koide, Yosuke Abe, and Yoshifumi Seki.
+ "Algorithms and System Architecture for Immediate Personalized News Recommendations" 2019 IEEE/WIC/ACM International Conference on Web Intelligence (WI). IEEE, 2019.
