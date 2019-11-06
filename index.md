@@ -25,8 +25,8 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
 
 #### October, 2019 - Current: software engineer at DMM.com
 - lead Machine Learning infrastructure (MLOps) team
-- build k8s/AWS infrastructure from scratch using terraform.
-- write an api server in Go which accepts every requests to the machine learning platform and works as a proxy.
+- build k8s/AWS infrastructure from scratch using terraform
+- write an api server in Go which accepts every requests to the machine learning platform and works as a proxy
 
 #### April, 2017 - September, 2019: software engineer at Gunosy Inc.
 - build machine learning models, recommendation algorithms
@@ -36,7 +36,6 @@ He is a golang lover and recognized as a Certified Kubernetes Application Engine
 - develop server side infrastructure from scratch
     - from AWS vpc setup to Kubernetes Cluster setup (on EKS) 
 - fully working on AWS
-    - EMR, ECS, EKS, Kinesis, Lambda, Dynamodb, DAX, ASG, ESS, etc.
 
 #### February, 2017 - March, 2017:software engineer intern at Gunosy Inc.
 - build some machine learning models for news article recommendation
@@ -79,13 +78,13 @@ Go, HCL(for terraform), Rust, Python, Kotlin (ordered by proficiency)
 ## Open source projects
 
 - _doogle_: [https://github.com/mathetake/doogle](https://github.com/mathetake/doogle)
-    - a Proof of Concept software of decentralized search engine based on gRPC written in Go.
+    - a Proof of Concept software of decentralized search engine based on gRPC written in Go
 - _gann_: [https://github.com/mathetake/gann](https://github.com/mathetake/gann)
-    - a package for approximate nearest neighbor search purely written in golang
+    - a package for approximate nearest neighbor search purely written in Go
     - __used in the production api servers in Gunosy Inc.__
 - _intergo_: [https://github.com/mathetake/intergo](https://github.com/mathetake/intergo)
-    - a package for interleaving / multileaving ranking generation in go.
-    - __This package is used in the experiments in our paper "Greedy Optimized Multileaving for Personalization" which has been accepted to RecSys 2019__.
+    - a package for interleaving / multileaving ranking generation in Go
+    - __This package is used in the experiments in our paper "Greedy Optimized Multileaving for Personalization" which has been accepted to RecSys 2019__
     - __used in the production api servers in Gunosy Inc.__
 
 ## Publications
