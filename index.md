@@ -17,16 +17,20 @@
 Takeshi Yoneda is a Japanese software engineer working in Tokyo. He was a graduate student at Department of Mathematics 
 at Osaka University and doing research on pure mathematics in the field of differential complex geometry. 
 After he received the degree of MSci. in mathematics, he started working as a machine learning engineer at Gunosy Inc. Now he is in charge of every engineering problems
-related to recommendation systems. For example, these include high performance server side implementation, 
+related to recommendation systems. For example, these include high performance server side implementations, 
 infrastructure engineering from AWS vpc setups to Kubernetes cluster management and developing recommendation algorithms. 
-He is a golang lover and recognized as a Certified Kubernetes Application Engineer([Digital Badge](https://www.youracclaim.com/badges/6c0dbb5e-48c8-4e3b-a83a-a91fda111eaf/public_url)). 
+He is a gopher and recognized as a Certified Kubernetes Application Engineer([Digital Badge](https://www.youracclaim.com/badges/6c0dbb5e-48c8-4e3b-a83a-a91fda111eaf/public_url)). 
+
+## Keywords
+
+AWS, Kubernetes, Observability, CI/CD, Developer Experience(DX), Golang, Recommendation Systems, Search Engine
 
 ## Employment History
 
 #### October, 2019 - Current: software engineer at DMM.com
 - lead Machine Learning infrastructure (MLOps) team
-- build k8s/AWS infrastructure from scratch using terraform
-- write an api server in Go which accepts every requests to the machine learning platform and works as a proxy
+- build k8s/AWS infrastructure, CI/CD pipeline and batch workflow execution environment from scratch
+- write some api servers in Go (including the one which accepts every requests to the machine learning platform and works as a proxy)
 
 #### April, 2017 - September, 2019: software engineer at Gunosy Inc.
 - build machine learning models, recommendation algorithms
@@ -65,7 +69,6 @@ Go, HCL(for terraform), Rust, Python, Kotlin (ordered by proficiency)
 - machine learning algorithms and its workflow ([I've published the book about these](https://www.amazon.co.jp/dp/4798150967))
 - information retrieval/recommendation algorithms
 - natural language processing knowledge for recommendation systems
-- data science tools: pandas, scikit-leanr, numpy, scipy, etc.
 
 ## Qualification
 
