@@ -4,7 +4,7 @@
 
 ## Information
 
-- Mail: `cz.rk.t0415y.g AT gmail.com`
+- Mail: `cz.rk.t0415y.g　gmail.com`
 - Github: [https://github.com/mathetake](https://github.com/mathetake)
 - Twitter: [https://twitter.com/mathetake](https://twitter.com/mathetake)
 - SlideShare: [https://www.slideshare.net/TakeshiYoneda](https://www.slideshare.net/TakeshiYoneda)
@@ -23,7 +23,7 @@ He is a gopher and recognized as a Certified Kubernetes Application Engineer([Di
 
 ## Keywords
 
-AWS, Kubernetes, Observability, CI/CD, Developer Experience(DX), Golang, Recommendation Systems, Search Engine
+AWS, Kubernetes, Terraform, Observability, CI/CD, Developer Experience(DX), Golang, Recommendation Systems, Search Engine
 
 ## Employment History
 
