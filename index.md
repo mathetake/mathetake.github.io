@@ -6,7 +6,7 @@
 Hi, this is Takeshi Yoneda, a software engineer, CKAD, Gopher and Terraform-lover.
 Currently I am working as a SRE / devops engineer, although I started my career as a machine learning engineer and
  have experiences of publishing research papers in machine learning. 
-My interests includes AWS, Kubernetes, Terraform(IaC), Observability, CI/CD, Developer Experience, Recommendation System, Search Engine, Golang, Rust, etc.
+My interests are AWS, Kubernetes, Terraform(IaC), Observability, CI/CD, Developer Experience, Recommendation System, Search Engine, Golang, Rust, etc.
 
 ## Information
 
@@ -25,7 +25,7 @@ Keywords: AWS, Terraform, Kubernetes, Golang, Datadog
 
 - lead Machine Learning infrastructure (MLOps) team
     - join at the very beginning of the team
-- build k8s/AWS infrastructure, CI/CD pipeline and batch workflow execution environment from scratch
+- build k8s/AWS infrastructure, CI/CD pipeline and batch workflow execution environments from scratch
 - Kubernetes and infrastructure management
 - write some api applications in Go (including the one which accepts every requests to the machine learning platform and works as a proxy)
 
@@ -54,7 +54,7 @@ Keywords: AWS, Terraform, Kubernetes, Recommendation System, Golang
 ## Skills
 
 ### Programming Languages 
-Go, HCL(for terraform), Rust, Python, Kotlin (ordered by proficiency)
+Go, HCL(for Terraform), Rust, Python, Kotlin (ordered by proficiency)
 
 ### Tools, Platforms, ...
 
