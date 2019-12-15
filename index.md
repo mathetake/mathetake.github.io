@@ -2,7 +2,6 @@
 
 <img width="280" alt="portfolio_view" src="https://mathetake.github.io/images/avatar.jpg">
 
-　
 
 Hi, this is Takeshi Yoneda, a software engineer, CKAD, Gopher and Terraform-lover.
 Currently I am working as a SRE / devops engineer, although I started my career as a machine learning engineer and
