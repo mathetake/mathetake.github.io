@@ -27,7 +27,7 @@ Keywords: AWS, Terraform, Kubernetes, Golang, Datadog, Istio, flagger
 - lead Machine Learning/Recommendation System infrastructure team
     - join at the very beginning of the team
 - build k8s/AWS infrastructure, CI/CD pipeline and batch workflow execution environments from scratch
-- write some api applications in Go
+- write multiple backend applications in Go
 
 #### April, 2017 - September, 2019: software engineer at Gunosy Inc.
 
