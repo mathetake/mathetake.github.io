@@ -99,5 +99,7 @@ AWS, Kubernetes, Docker, Terraform, Datadog, gRPC, Elasticsearch, Redis, Fluentd
 ## Research Papers (refereed)
 - Iizuka, Kojiro, __Takeshi Yoneda__, and Yoshifumi Seki. "Greedy optimized multileaving for personalization." 
 Proceedings of the 13th ACM Conference on Recommender Systems. ACM, 2019.[[arxiv]](https://arxiv.org/abs/1907.08346)
+[Acceptance rate: 25%]
 - __Yoneda, Takeshi__, et al. "Algorithms and System Architecture for Immediate Personalized News Recommendations." 
 IEEE/WIC/ACM International Conference on Web Intelligence. ACM, 2019. [[arxiv]](https://arxiv.org/abs/1909.01005)
+[Acceptance rate: 19%]
