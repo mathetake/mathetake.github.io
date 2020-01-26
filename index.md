@@ -7,7 +7,7 @@ Hi, this is Takeshi Yoneda, a software engineer, CKAD, Gopher and Terraform-love
 Currently I am working as a SRE/devops engineer, although I started my career as a machine learning engineer and
  have experiences of publishing research papers in machine learning. 
 
-__Keywords__: AWS, Kubernetes, Terraform(IaC), Observability, CI/CD, Developer Experience, Recommendation System, Search Engine, Golang, Rust, etc.
+__Keywords__: AWS, Kubernetes, Terraform(IaC), Observability, CI/CD, Recommendation System, Search Engine, Golang, Rust, etc.
 
 ## Information
 
@@ -22,12 +22,11 @@ __Keywords__: AWS, Kubernetes, Terraform(IaC), Observability, CI/CD, Developer E
 
 #### October, 2019 - Current: software engineer at DMM.com
 
-Keywords: AWS, Terraform, Kubernetes, Golang, Datadog, Istio, flagger
+Keywords: AWS, Terraform, Kubernetes, Golang, Datadog, Istio, Flagger, Flux
 
-- lead Machine Learning/Recommendation System infrastructure team
-    - join at the very beginning of the team
+- lead Machine Learning/Recommendation System infrastructure (MLOps) team since its very beginning
 - build k8s/AWS infrastructure, CI/CD pipeline and batch workflow execution environments from scratch
-- write multiple backend applications in Go
+- not only developed the infrastructure, wrote multiple backend applications in Go
 
 #### April, 2017 - September, 2019: software engineer at Gunosy Inc.
 
