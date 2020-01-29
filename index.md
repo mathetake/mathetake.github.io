@@ -36,7 +36,7 @@ Keywords: AWS, Terraform, Kubernetes, Recommendation System, Golang
 - develop high performance/observable microservices with Envoyproxy, gRPC, ...
 - develop a search engine system on top of Elasticsearch
 - data flow implementation with Apache Spark, digdag, etc.
-- published two research papers about the recommendation system architecture and algorithms (see [#Research Papers](https://mathetake.github.io/#research-papers-refereed)
+- published two research papers about the recommendation system architecture and algorithm
 
 #### February, 2017 - March, 2017: software engineer intern at Gunosy Inc.
 - build some machine learning models for news article recommendation
@@ -48,7 +48,6 @@ Keywords: AWS, Terraform, Kubernetes, Recommendation System, Golang
     - Thesis: [ADHM construction on hyper-Kahler manifolds of type $A_\infty$](https://mathetake.github.io/assets/pdfs/adhm-construction-hyper.pdf)
     - Supervisor: [Prof. Ryushi Goto](http://www.math.sci.osaka-u.ac.jp/eng/staff_goto.html)
 -  April, 2011 - March, 2015: The University of Tsukuba, The School of Science and Engineering, Department of mathematics
--  April, 2008 - March, 2011: Hamamatsu Minami High School
  
 ## Skills
 
