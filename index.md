@@ -26,16 +26,15 @@ Keywords: AWS, Terraform, Kubernetes, Golang, Datadog, Istio, Flagger, Flux
 
 - lead Machine Learning/Recommendation System infrastructure (MLOps) team since its very beginning
 - build k8s/AWS infrastructure, CI/CD pipeline and batch workflow execution environments from scratch
-- not only developed the infrastructure, wrote multiple backend applications in Go
+- developed multiple backend applications in Go
 
 #### April, 2017 - September, 2019: software engineer at Gunosy Inc.
 
 Keywords: AWS, Terraform, Kubernetes, Recommendation System, Golang
 
-- develop a server side infrastructure ranging from AWS VPC setup to Kubernetes cluster management using Terraform.
-- develop high performance/observable microservices with Envoyproxy, gRPC, ...
-- develop a search engine system on top of Elasticsearch
-- data flow implementation with Apache Spark, digdag, etc.
+- developed the server side infrastructure ranging from AWS VPC setup to Kubernetes cluster management using Terraform.
+- developed high performance/observable microservices with Envoyproxy, gRPC, ...
+- developed the search engine system on top of Elasticsearch
 - published two research papers about the recommendation system architecture and algorithm
 
 #### February, 2017 - March, 2017: software engineer intern at Gunosy Inc.
@@ -82,6 +81,8 @@ AWS, Kubernetes, Docker, Terraform, Datadog, gRPC, Elasticsearch, Redis, Fluentd
     - a package for interleaving / multileaving ranking generation in Go
     - __This package is used in the experiments in our paper "Greedy Optimized Multileaving for Personalization" which has been accepted to RecSys 2019__
     - __used in the production api servers in Gunosy Inc.__
+- _flagger_ [https://github.com/weaveworks/flagger](https://github.com/weaveworks/flagger)
+    - I am a maintainer
 
 ## Publications
 - 現場で使える!Python機械学習入門 機械学習アルゴリズムの理論と実践 [[amazon](https://www.amazon.co.jp/dp/4798150967)]
