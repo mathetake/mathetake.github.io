@@ -51,15 +51,15 @@ __Keywords__: AWS, Kubernetes, Terraform(IaC), Progressive Delivery, Recommendat
 - a member of __proxy-wasm__ organization [https://github.com/proxy-wasm](https://github.com/proxy-wasm)
 
 #### personal projects
+- _gasm_: [https://github.com/mathetake/gasm](https://github.com/mathetake/gasm)
+    - a WASM virtual machine written in Go
 - _proxy-wasm-go_: [https://github.com/mathetake/proxy-wasm-go](https://github.com/mathetake/proxy-wasm-go)
     - an experimental runtime sdk for proxy-wasm powered by TinyGo
 - _gann_: [https://github.com/mathetake/gann](https://github.com/mathetake/gann)
     - a package for approximate nearest neighbor search purely written in Go
-    - __used in the production api servers in Gunosy Inc.__
 - _intergo_: [https://github.com/mathetake/intergo](https://github.com/mathetake/intergo)
     - a package for interleaving / multileaving ranking generation in Go
     - __This package is used in the experiments in our paper "Greedy Optimized Multileaving for Personalization" which has been accepted to RecSys 2019__
-    - __used in the production api servers in Gunosy Inc.__
 - others can be found [here](https://github.com/mathetake)
 
 ## Research Papers (refereed)
