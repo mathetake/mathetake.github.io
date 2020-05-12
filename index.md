@@ -4,14 +4,14 @@
 
 
 Hi, this is Takeshi Yoneda, a software engineer living in Tokyo.
-Currently I am working as a SRE/devops engineer, although I started my career as a machine learning engineer and
- have experiences of publishing research papers in machine learning.
+Currently I am working as a SRE/devops/backend engineer, although I started my career as a machine learning engineer and
+ have experiences of publishing research papers in machine learning and recommendation system.
  
 __Keywords__: AWS, Kubernetes, Terraform(IaC), Progressive Delivery, Recommendation System, Search Engine, Golang, WASM, Proxy-wasm.
 
 ## Information
 
-- mail: `mathetake____icloud.com`
+- mail: `mathetake_ _icloud.com`
 - github: [https://github.com/mathetake](https://github.com/mathetake)
 - twitter: [https://twitter.com/mathetake](https://twitter.com/mathetake)
 - speakerDeck: [https://speakerdeck.com/mathetake](https://speakerdeck.com/mathetake)
@@ -23,12 +23,11 @@ __Keywords__: AWS, Kubernetes, Terraform(IaC), Progressive Delivery, Recommendat
 
 - tech lead at Data Application Engineering team since its very beginning
 - build k8s/AWS infrastructure, CI/CD pipeline and batch workflow execution environments from scratch
-- working on AWS/k8s 
 
 #### April, 2017 - September, 2019: software engineer at Gunosy Inc.
 
 - developed the server side infrastructure ranging from AWS VPC setup to Kubernetes cluster management using Terraform.
-- developed high performance/observable microservices with Envoyproxy, gRPC, ...
+- developed tens of microservices in Go
 - developed the search engine system on top of Elasticsearch
 - published two research papers about the recommendation system architecture and algorithm
 
@@ -47,19 +46,22 @@ __Keywords__: AWS, Kubernetes, Terraform(IaC), Progressive Delivery, Recommendat
 
 #### contributions
 
-- a maintainer of __flagger__ [https://github.com/weaveworks/flagger](https://github.com/weaveworks/flagger)
-- a member of __proxy-wasm__ organization [https://github.com/proxy-wasm](https://github.com/proxy-wasm)
+- a maintainer of __flagger__: [https://github.com/weaveworks/flagger](https://github.com/weaveworks/flagger)
+- a member of __proxy-wasm__: organization [https://github.com/proxy-wasm](https://github.com/proxy-wasm)
+    - just a member yet. I was invited since I developed [proxy-wasm-go](https://github.com/mathetake/proxy-wasm-go).
 
 #### personal projects
 - _gasm_: [https://github.com/mathetake/gasm](https://github.com/mathetake/gasm)
     - a WASM virtual machine written in Go
+    - featured in golang weekly [https://golangweekly.com/issues/311](https://golangweekly.com/issues/311)
+    - reddit discussion: [https://www.reddit.com/r/golang/comments/gdwpow/mathetakegasm_a_wasm_virtual_machine_for_gophers](https://www.reddit.com/r/golang/comments/gdwpow/mathetakegasm_a_wasm_virtual_machine_for_gophers/)
 - _proxy-wasm-go_: [https://github.com/mathetake/proxy-wasm-go](https://github.com/mathetake/proxy-wasm-go)
     - an experimental runtime sdk for proxy-wasm powered by TinyGo
 - _gann_: [https://github.com/mathetake/gann](https://github.com/mathetake/gann)
     - a package for approximate nearest neighbor search purely written in Go
 - _intergo_: [https://github.com/mathetake/intergo](https://github.com/mathetake/intergo)
     - a package for interleaving / multileaving ranking generation in Go
-    - __This package is used in the experiments in our paper "Greedy Optimized Multileaving for Personalization" which has been accepted to RecSys 2019__
+    - This package was used in the experiments in our paper "Greedy Optimized Multileaving for Personalization" which has been accepted to RecSys 2019
 - others can be found [here](https://github.com/mathetake)
 
 ## Research Papers (refereed)
