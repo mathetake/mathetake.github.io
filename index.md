@@ -14,7 +14,6 @@ __Keywords__: AWS, Kubernetes, Terraform(IaC), Progressive Delivery, Recommendat
 - mail: `mathetake_ _icloud.com`
 - github: [https://github.com/mathetake](https://github.com/mathetake)
 - twitter: [https://twitter.com/mathetake](https://twitter.com/mathetake)
-- speakerDeck: [https://speakerdeck.com/mathetake](https://speakerdeck.com/mathetake)
 - linkedin: [https://www.linkedin.com/in/mathetake/](https://www.linkedin.com/in/mathetake/)
 
 ## Employment History
@@ -22,7 +21,7 @@ __Keywords__: AWS, Kubernetes, Terraform(IaC), Progressive Delivery, Recommendat
 #### October, 2019 - Current: software engineer at DMM.com
 
 - tech lead at Data Application Engineering team since its very beginning
-- build k8s/AWS infrastructure, CI/CD pipeline and batch workflow execution environments from scratch
+- building k8s/AWS infrastructure, CI/CD pipeline and batch workflow execution environments from scratch
 
 #### April, 2017 - September, 2019: software engineer at Gunosy Inc.
 
@@ -32,7 +31,7 @@ __Keywords__: AWS, Kubernetes, Terraform(IaC), Progressive Delivery, Recommendat
 - published two research papers about the recommendation system architecture and algorithm
 
 #### February, 2017 - March, 2017: software engineer intern at Gunosy Inc.
-- build some machine learning models for news article recommendation
+- built some machine learning models for news article recommendation
 
 ## Education 
 
@@ -77,12 +76,6 @@ IEEE/WIC/ACM International Conference on Web Intelligence. ACM, 2019. [[arxiv]](
     - a book about machine learning algorithms and data science workflow (I'm main author)
 - 機械学習エンジニアを目指すには - Software Design 2017年8月号 [[amazon](https://www.amazon.co.jp/%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3-2017%E5%B9%B4-08-%E6%9C%88%E5%8F%B7-%E9%9B%91%E8%AA%8C/dp/B07289LMW8)]
 
-## Talks
-- The mathematical model of user behavioral dynamics and its realization on AWS [[slide](https://speakerdeck.com/mathetake/yuzaxing-dong-gacheng-suli-xue-xi-falseshi-xian-to-sorewoyong-itatui-jian-sisutemuwozhi-eruaws-akitekutiya)] [[video](https://www.youtube.com/watch?v=ACHKLNfjSUA&index=50&t=0s&list=PLzWGOASvSx6Gm88FXmryU-T1WKC3-SOl2)]
-    - a talk at [AWS Summit Tokyo 2018](https://aws.amazon.com/jp/summit2018-report/)
-- ユーザー行動の数理モデルと高速推薦システム [[slide](https://speakerdeck.com/mathetake/yusaxing-dong-falseshu-li-moteruto-gao-su-tui-jian-sisutemu)]
-    - a talk at [Battle conference under 30, 2018](https://bcu30.jp/archives.html)
- 
 ## Qualification
 
 - TOEIC: 940/990 (December, 2015)
