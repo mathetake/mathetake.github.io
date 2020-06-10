@@ -11,7 +11,7 @@ __Keywords__: AWS, Kubernetes, Terraform(IaC), Progressive Delivery, Recommendat
 
 ## Information
 
-- mail: `mathetake_ _icloud.com`
+- mail: `yoneda.takeshi.md _at_ alumni.tsukuba.ac.jp`
 - github: [https://github.com/mathetake](https://github.com/mathetake)
 - twitter: [https://twitter.com/mathetake](https://twitter.com/mathetake)
 - linkedin: [https://www.linkedin.com/in/mathetake/](https://www.linkedin.com/in/mathetake/)
