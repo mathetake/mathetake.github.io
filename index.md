@@ -76,8 +76,3 @@ IEEE/WIC/ACM International Conference on Web Intelligence. ACM, 2019. [[arxiv]](
     - a book about machine learning algorithms and data science workflow (I'm main author)
 - 機械学習エンジニアを目指すには - Software Design 2017年8月号 [[amazon](https://www.amazon.co.jp/%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3-2017%E5%B9%B4-08-%E6%9C%88%E5%8F%B7-%E9%9B%91%E8%AA%8C/dp/B07289LMW8)]
 
-## Qualification
-
-- TOEIC: 940/990 (December, 2015)
-- IELTS: 7.0 (January, 2020)
-- Certified Kubernetes Application Developer: April, 2019 -  ([Digital Badge](https://www.youracclaim.com/badges/6c0dbb5e-48c8-4e3b-a83a-a91fda111eaf/public_url))
