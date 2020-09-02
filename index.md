@@ -4,10 +4,10 @@
 
 
 Hi, this is Takeshi Yoneda, a software engineer living in Tokyo.
-Currently I am working as a SRE/devops/backend engineer, although I started my career as a machine learning engineer and
+Currently, I am working on Cloud Native infrastructure, although I started my career as a machine learning engineer and
  have experiences of publishing research papers in machine learning and recommendation system.
  
-__Keywords__: AWS, Kubernetes, Terraform(IaC), Progressive Delivery, Recommendation System, Search Engine, Golang, WASM, Proxy-wasm.
+__Keywords__: AWS, Kubernetes, Progressive Delivery, Recommendation System, Golang, WASM, Proxy-wasm.
 
 ## Information
 
@@ -18,19 +18,23 @@ __Keywords__: AWS, Kubernetes, Terraform(IaC), Progressive Delivery, Recommendat
 
 ## Employment History
 
-#### October, 2019 - Current: software engineer at DMM.com
+#### September, 2020 - Current: software engineer at Tetrate
+
+- working on [proxy-wasm](https://github.com/proxy-wasm), envoy and istio related stuff
+
+#### October, 2019 - Autgust 2020: software engineer at DMM.com
 
 - tech lead at Data Application Engineering team since its very beginning
-- building k8s/AWS infrastructure, CI/CD pipeline and batch workflow execution environments from scratch
+- built k8s/AWS infrastructure, CI/CD pipeline and batch workflow execution environments from scratch
 
-#### April, 2017 - September, 2019: software engineer at Gunosy Inc.
+#### April, 2017 - September, 2019: software engineer at Gunosy
 
 - developed the server side infrastructure ranging from AWS VPC setup to Kubernetes cluster management using Terraform.
 - developed tens of microservices in Go
 - developed the search engine system on top of Elasticsearch
 - published two research papers about the recommendation system architecture and algorithm
 
-#### February, 2017 - March, 2017: software engineer intern at Gunosy Inc.
+#### February, 2017 - March, 2017: software engineer intern at Gunosy
 - built some machine learning models for news article recommendation
 
 ## Education 
