@@ -20,7 +20,11 @@ __Keywords__: AWS, Kubernetes, Progressive Delivery, Recommendation System, Gola
 
 #### September, 2020 - Current: software engineer at Tetrate
 
-- working on [proxy-wasm](https://github.com/proxy-wasm), envoy and istio related stuff
+Key responsibility: Contributing to the following Open Source projects from WebAssembly perspective
+- Envoy (https://github.com/envoyproxy)
+- proxy-wasm (https://github.com/proxy-wasm)
+- proxy-wasm's Golang SDK (https://github.com/tetratelabs/proxy-wasm-go-sdk)
+- TinyGo (https://github.com/tinygo-org/tinygo)
 
 #### October, 2019 - Autgust 2020: software engineer at DMM.com
 
@@ -47,19 +51,18 @@ __Keywords__: AWS, Kubernetes, Progressive Delivery, Recommendation System, Gola
 
 ## Open source
 
-#### contributions
 
 - a maintainer of __flagger__: [https://github.com/weaveworks/flagger](https://github.com/weaveworks/flagger)
-- a member of __proxy-wasm__: organization [https://github.com/proxy-wasm](https://github.com/proxy-wasm)
-    - just a member yet. I was invited since I developed [proxy-wasm-go](https://github.com/mathetake/proxy-wasm-go).
+- a member of Envoy: [https://github.com/envoyproxy/envoy](https://github.com/envoyproxy/envoy)
+- a C++ commiter of __proxy-wasm__: [https://github.com/proxy-wasm](https://github.com/proxy-wasm)
+- the creator of Go SDK for proxy-wasm: [https://github.com/tetratelabs/proxy-wasm-go-sdk](https://github.com/tetratelabs/proxy-wasm-go-sdk)
+    - originally developed as my personal project, then transferred to [Tetratelabs](https://github.com/tetratelabs/proxy-wasm-go-sdk) when I joined Tetrate
 
-#### personal projects
+
 - _gasm_: [https://github.com/mathetake/gasm](https://github.com/mathetake/gasm)
     - a WASM virtual machine written in Go
     - featured in golang weekly [https://golangweekly.com/issues/311](https://golangweekly.com/issues/311)
     - reddit discussion: [https://www.reddit.com/r/golang/comments/gdwpow/mathetakegasm_a_wasm_virtual_machine_for_gophers](https://www.reddit.com/r/golang/comments/gdwpow/mathetakegasm_a_wasm_virtual_machine_for_gophers/)
-- _proxy-wasm-go_: [https://github.com/mathetake/proxy-wasm-go](https://github.com/mathetake/proxy-wasm-go)
-    - an experimental runtime sdk for proxy-wasm powered by TinyGo
 - _gann_: [https://github.com/mathetake/gann](https://github.com/mathetake/gann)
     - a package for approximate nearest neighbor search purely written in Go
 - _intergo_: [https://github.com/mathetake/intergo](https://github.com/mathetake/intergo)
