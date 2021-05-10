@@ -7,24 +7,25 @@ Hi, this is Takeshi Yoneda, a software engineer living in Tokyo.
 Currently, I am working on Cloud Native infrastructure, although I started my career as a machine learning engineer and
  have experiences of publishing research papers in machine learning and recommendation system.
  
-__Keywords__: AWS, Kubernetes, Progressive Delivery, Recommendation System, Golang, WASM, Proxy-wasm.
+__Keywords__: AWS, Kubernetes, Progressive Delivery, Recommendation System, Golang, Wasm, Proxy-Wasm.
 
 ## Information
 
-- mail: `yoneda.takeshi.md _at_ alumni.tsukuba.ac.jp`
-- github: [https://github.com/mathetake](https://github.com/mathetake)
-- twitter: [https://twitter.com/mathetake](https://twitter.com/mathetake)
-- linkedin: [https://www.linkedin.com/in/mathetake/](https://www.linkedin.com/in/mathetake/)
+- Mail: `yoneda.takeshi.md _at_ alumni.tsukuba.ac.jp`
+- GitHub: [https://github.com/mathetake](https://github.com/mathetake)
+- Twitter: [https://twitter.com/mathetake](https://twitter.com/mathetake)
+- Linkedin: [https://www.linkedin.com/in/mathetake/](https://www.linkedin.com/in/mathetake/)
+- Google Scholar: [https://scholar.google.co.jp/citations?user=YjAYuV8AAAAJ](https://scholar.google.co.jp/citations?user=YjAYuV8AAAAJ)
 
 ## Employment History
 
-#### September, 2020 - Current: software engineer at Tetrate
+#### September, 2020 - Current: software engineer at [Tetrate.io](https://tetrate.io/)
 
-Key responsibility: Contributing to the following Open Source projects from WebAssembly perspective
-- Envoy (https://github.com/envoyproxy)
-- proxy-wasm (https://github.com/proxy-wasm)
-- proxy-wasm's Golang SDK (https://github.com/tetratelabs/proxy-wasm-go-sdk)
-- TinyGo (https://github.com/tinygo-org/tinygo)
+Key responsibility: Contributing to the following Open Source projects from WebAssembly and security perspective
+- Envoy Proxy: [https://github.com/envoyproxy](https://github.com/envoyproxy)
+- Proxy-Wasm: [https://github.com/proxy-wasm](https://github.com/proxy-wasm)
+- Proxy-Wasm: Go SDK: [https://github.com/tetratelabs/proxy-wasm-go-sdk](https://github.com/tetratelabs/proxy-wasm-go-sdk)
+- TinyGo: [https://github.com/tinygo-org/tinygo](https://github.com/tinygo-org/tinygo)
 
 #### October, 2019 - Autgust 2020: software engineer at DMM.com
 
@@ -52,15 +53,16 @@ Key responsibility: Contributing to the following Open Source projects from WebA
 ## Open source
 
 
-- a maintainer of __flagger__: [https://github.com/weaveworks/flagger](https://github.com/weaveworks/flagger)
-- a member of Envoy: [https://github.com/envoyproxy/envoy](https://github.com/envoyproxy/envoy)
-- a C++ commiter of __proxy-wasm__: [https://github.com/proxy-wasm](https://github.com/proxy-wasm)
+- a maintainer of __Flagger__: [https://github.com/weaveworks/flagger](https://github.com/weaveworks/flagger)
+- a member of __Envoy__: [https://github.com/envoyproxy/envoy](https://github.com/envoyproxy/envoy)
+    - code owner of [Wasm extension](https://github.com/envoyproxy/envoy/blob/v1.18.2/CODEOWNERS#L95-L105), and [SPIFFE TLS extension](https://github.com/envoyproxy/envoy/blob/v1.18.2/CODEOWNERS#L45-L46).
+- a C++ commiter of __Proxy-Wasm__: [https://github.com/proxy-wasm](https://github.com/proxy-wasm)
 - the creator of Go SDK for proxy-wasm: [https://github.com/tetratelabs/proxy-wasm-go-sdk](https://github.com/tetratelabs/proxy-wasm-go-sdk)
     - originally developed as my personal project, then transferred to [Tetratelabs](https://github.com/tetratelabs/proxy-wasm-go-sdk) when I joined Tetrate
 
 
 - _gasm_: [https://github.com/mathetake/gasm](https://github.com/mathetake/gasm)
-    - a WASM virtual machine written in Go
+    - a Wasm virtual machine written in Go
     - featured in golang weekly [https://golangweekly.com/issues/311](https://golangweekly.com/issues/311)
     - reddit discussion: [https://www.reddit.com/r/golang/comments/gdwpow/mathetakegasm_a_wasm_virtual_machine_for_gophers](https://www.reddit.com/r/golang/comments/gdwpow/mathetakegasm_a_wasm_virtual_machine_for_gophers/)
 - _gann_: [https://github.com/mathetake/gann](https://github.com/mathetake/gann)
@@ -79,7 +81,8 @@ IEEE/WIC/ACM International Conference on Web Intelligence. ACM, 2019. [[arxiv]](
 [Acceptance rate: 19%]
 
 ## Publications
-- 現場で使える!Python機械学習入門 機械学習アルゴリズムの理論と実践 [[amazon](https://www.amazon.co.jp/dp/4798150967)]
+- ブラウザ外 Wasm 最前線: WASIとProxy-Wasm - Software Design 2021年3月号 [[Amazon](https://www.amazon.co.jp/o/ASIN/B08T7D2LFR/gihyojp-22)]
+- 現場で使える!Python機械学習入門 機械学習アルゴリズムの理論と実践 [[Amazon](https://www.amazon.co.jp/dp/4798150967)]
     - a book about machine learning algorithms and data science workflow (I'm main author)
-- 機械学習エンジニアを目指すには - Software Design 2017年8月号 [[amazon](https://www.amazon.co.jp/%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3-2017%E5%B9%B4-08-%E6%9C%88%E5%8F%B7-%E9%9B%91%E8%AA%8C/dp/B07289LMW8)]
+- 機械学習エンジニアを目指すには - Software Design 2017年8月号 [[Amazon](https://www.amazon.co.jp/o/ASIN/B07289LMW8/gihyojp-22)]
 
