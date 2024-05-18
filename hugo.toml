@@ -1,0 +1,50 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+theme = 'typo'
+title = 'Bytewise'
+
+[taxonomies]
+tag = 'tags'
+
+[params]
+# Appearance settings
+theme = 'light'
+
+homeIntroContent = """
+Random thoughts by @mathetake
+"""
+
+# Collection to display on home
+homeCollection = 'posts'
+
+# Lists parameters
+paginationSize = 100
+listSummaries = true
+listDateFormat = 'Jan 2 2006'
+
+# Breadcrumbs
+breadcrumbs = false
+
+# Social icons
+[[params.social]]
+name = "github"
+url = "https://github.com/mathetake"
+
+[[params.social]]
+name = "linkedin"
+url = "https://www.linkedin.com/in/mathetake/"
+
+
+# Syntax highligth on code blocks
+[markup]
+style = 'algol'
+
+# Giscus comments
+[params.giscus]
+enable = false
+repo = "user/repo"
+repoid = "repoId"
+category = "General"
+categoryid = "categoryId"
+mapping = "pathname"
+theme = "preferred_color_scheme"
