@@ -37,6 +37,11 @@ url = "https://github.com/mathetake"
 name = "linkedin"
 url = "https://www.linkedin.com/in/mathetake/"
 
+# Social icons
+[[params.social]]
+name = "twitter"
+url = "https://x.com/mathetake"
+
 
 # Syntax highligth on code blocks
 [markup]
