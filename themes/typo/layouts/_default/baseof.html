@@ -4,6 +4,21 @@
 
   <head>
     {{ partial "head.html" . }}
+
+    <!-- Open Graph Protocol -->
+    <meta property="og:title" content="{{ .Title }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:image" content="{{ .Params.ogimage | default .Site.Params.ogimage }}">
+    <meta property="og:description" content="{{ .Summary | default .Site.Params.description }}">
+    <meta property="og:site_name" content="{{ .Site.Title }}">
+    <meta property="og:locale" content="{{ .Site.LanguageCode }}">
+
+    <!-- Additional Metadata -->
+    <meta name="twitter:card" content="{{ .Params.ogimage | default .Site.Params.ogimage }}">
+    <meta name="twitter:title" content="{{ .Title }}">
+    <meta name="twitter:description" content="{{ .Summary | default .Site.Params.description }}">
+    <meta name="twitter:image" content="{{ .Params.ogimage | default .Site.Params.ogimage }}">
   </head>
 
   {{ $theme := "auto"}}

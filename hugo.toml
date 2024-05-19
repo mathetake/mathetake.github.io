@@ -7,6 +7,9 @@ title = 'Bytewise'
 tag = 'tags'
 
 [params]
+description = "Random thoughts by @mathetake"
+ogimage = "https://avatars.githubusercontent.com/u/13513977"
+
 # Appearance settings
 theme = 'light'
 
