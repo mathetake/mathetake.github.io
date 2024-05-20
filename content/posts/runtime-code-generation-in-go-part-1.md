@@ -11,7 +11,7 @@ showTags: false
 hideBackToTop: true
 ---
 
-**Disclaimer: I won't expand on why/when you want to do kind of hack, and you should not do this unless you know exactly what you are doing. 
+**Disclaimer: I won't expand on why/when you want to do this kind of hack, and you should not do this unless you know exactly what you are doing. 
 Everything I talk about here is completely unsafe and might not be accurate for the future Go versions. This is not a recommendation, but more of a fun story.**
 
 A few days ago, I posted about the idea of a blog post on runtime code generation and execution in Go:
