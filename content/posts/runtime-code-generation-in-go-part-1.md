@@ -68,7 +68,7 @@ generated machine code as "JITed code", but it's the only exception.
 ## Prior art
 
 So I guess the "runtime code generation and execution" sounds terrible and pretty crazy to you and normal Go developers.
-I was also one of you until I started to work on wazero. But actually, there are some prior arts in the Go ecosystem that do similar things,
+I was also one of you until I started to work on wazero. But actually, there are some prior art in the Go ecosystem that do similar things,
 or at least there have been some attempts to do so. Basically, I am definitely not the only crazy person who wanted to do this kind of stuff in Go.
 With the quick search on the web, I found the following projects besides wazero:
 
@@ -118,7 +118,7 @@ index 6615471c..1747eafa 100644
 ```
 
 where I mistakenly allows the use of AArch64's `x28` register in the generated machine code in wazero. The register is reserved and the value must
-be the same across the execution to play nicely with the Go runtime.[^9] If you run the test, and then you would get errors like the following (really depends on the kind of bug you made and the platform you are on):
+be the same across the execution to play nicely with the Go runtime.[^9] If you run the test, you would get errors like the following (it really depends on the kind of bug you made and the platform you are on):
 ```shell
 traceback: unexpected SPWRITE function runtime.morestack
 fatal error: traceback
@@ -141,9 +141,9 @@ So in other words, the generated machine code must be tailored to the Go runtime
 and that's the most challenging part of the runtime code generation and execution in Go.
 
 
-## Smallest demo
+## Tiny demo
 
-The following is the smallest demo of the runtime code generation and execution in Go. I assume you are on a Unix-like system like Linux or macOS on an AArch64 machine,
+The following is the tiny demo of the runtime code generation and execution in Go. I assume you are on a Unix-like system like Linux or macOS on an AArch64 machine,
 and you have Go installed on your machine.
 
 First, we prepare two source codes:
@@ -255,7 +255,7 @@ the AArch64 instruction encoded as `0x00000000` is ["Undefined/UDF" instruction]
 One thing you also notice is that the error says `unknown pc 0x1051c4000`. This is because the Go runtime is not aware of the machine code you generated,
 and it doesn't have the debug information for the machine code.
 
-Okay, how can we fix this? One of the smallest functions is the one just that returns, so let's write the machine code for that:
+Okay, how can we fix this? One of the tiniest functions is the one just that returns, so let's write the machine code for that:
 
 ```diff
 --- a/codes/runtime_code_generation_in_go/main.go
@@ -294,15 +294,17 @@ ok
 
 Cool innit? The program successfully executed the machine code that just returns, and the program prints `ok` as expected from the `main` function.
 
+You can browse the whole source code [here](https://github.com/mathetake/mathetake.github.io/tree/main/codes/runtime_code_generation_in_go_part_1).
+
 
 ## Conclusion
 
-In this post, I introduced the concept of runtime code generation and execution in Go, and showed the smallest demo of it.
-The demo is really simple, so I guess readers can understand the basic idea of runtime code generation and execution in Go, but at the same time
-still have no idea on how to write the machine code for the real function or program. In other words, I didn't explain how to perform function calls just like
+In this post, I introduced the concept of runtime code generation and execution in Go, and showed the tiny demo of it.
+The demo is really simple, so I hope readers can understand the basic idea of runtime code generation and execution in Go, but at the same time
+I guess you still have no idea on how to write the machine code for the real function or program. In other words, I didn't explain how to perform function calls just like
 any normal Go program does as well as how to return the results from the JITed code to the caller in the Go world. That's what I am going to cover in the next series of posts.
 
-If you have any questions or feedback, please let me know on [X/Twitter](https://twitter.com/mathetake). I am happy to answer any questions you have. 
+If you have any questions, feedback, requests, please let me know on [X/Twitter](https://twitter.com/mathetake). I am happy to answer any questions you have. 
 Also, I am always looking for an exciting project/problem to work on, so if you have anything in mind and think I can help with it, please let me know as well, I would love to chat.
 
 See you in the next post!
@@ -314,7 +316,7 @@ See you in the next post!
 [^5]: https://wazero.io/docs/how_the_optimizing_compiler_works/
 [^6]: [I contributed some patches to the Zig compiler](https://github.com/ziglang/zig/commits?author=mathetake)
 [^7]: It is possible to convert the machine code as a Go function, but it gets hairy for various reasons.
-[^8]: It is well-known that browser based WebAssembly runtime like V8 is JIT in typical sense.
+[^8]: It is clear that browser based WebAssembly runtime like V8 is JIT in typical sense.
 [^9]: [Go internal ABI specification](https://github.com/golang/go/blob/49d42128fd8594c172162961ead19ac95e247d24/src/cmd/compile/abi-internal.md) details how the Go runtime uses the registers in its implementation.
 [^10]: On AArch64, the OS typically forbids read-write-executable memory regions in the user land, so you need to mark the memory region as read-executable after writing the machine code. That is controlled by the `SCTL` register only accessible in the privileged mode. For more details, see "Preventing execution from writable locations" section in the [AArch64 manual](https://developer.arm.com/documentation/ddi0406/c/System-Level-Architecture/Virtual-Memory-System-Architecture--VMSA-/Memory-access-control/Execute-never-restrictions-on-instruction-fetching?lang=en#BEIEAHHI).
 [^11]: For the syntax of assembly, please refer to [A Quick Guide to Go's Assembler](https://go.dev/doc/asm).
