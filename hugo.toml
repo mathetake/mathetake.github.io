@@ -1,7 +1,7 @@
 baseURL = 'https://example.org/'
 languageCode = 'en-us'
 theme = 'typo'
-title = 'Bytewise'
+title = 'BitByteWise'
 
 [taxonomies]
 tag = 'tags'
@@ -26,7 +26,7 @@ listSummaries = true
 listDateFormat = 'Jan 2 2006'
 
 # Breadcrumbs
-breadcrumbs = false
+breadcrumbs = true
 
 # Social icons
 [[params.social]]
@@ -43,9 +43,11 @@ name = "twitter"
 url = "https://x.com/mathetake"
 
 
-# Syntax highligth on code blocks
-[markup]
-style = 'algol'
+[markup.goldmark.renderer]
+unsafe = true
+
+[markup.highlight]
+style = 'colorful'
 
 # Giscus comments
 [params.giscus]
