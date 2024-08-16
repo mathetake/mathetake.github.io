@@ -93,7 +93,7 @@ pub unsafe extern "C" fn rust_start(stack_ptr: *const *const u8) {
     // Each environment variable is a null-terminated string.
     // The number of environment variables is unknown, so we need to search for the null pointer
     // that is the end of the environment variable array.
-    let mut envp = argv.offset(argc + 1); +1 because NULL follows the arguments.
+    let mut envp = argv.offset(argc + 1) // +1 because NULL follows the arguments.
     while !(*envp).is_null() {
         let env = *envp;
         let mut env_size = 0;
@@ -114,11 +114,11 @@ More precisely, the layout is as follows:
 ```
     Lower address
 +-------------------+ <---- the initial stack pointer
-|      argc         |
+|       argc        |
 +-------------------+
-|     argv[0]       |  -> points to the null-terminated first argument
+|      argv[0]      |  -> points to the null-terminated first argument
 +-------------------+
-|     argv[1]       |  -> points to the null-terminated second argument
+|      argv[1]      |  -> points to the null-terminated second argument
 +-------------------+
 |       ...         |
 +-------------------+
