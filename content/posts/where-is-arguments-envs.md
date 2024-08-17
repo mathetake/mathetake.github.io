@@ -132,7 +132,7 @@ More precisely, the layout is as follows:
 +-------------------+
 |       ...         |
 +-------------------+
-|       env[N]      |  -> points to the null-terminated last environment variable
+|      envp[N]      |  -> points to the null-terminated last environment variable
 +-------------------+
 |       NULL        |
 +-------------------+

@@ -7,11 +7,9 @@ use syscalls::*;
 
 #[no_mangle]
 pub unsafe extern "C" fn rust_start(stack_ptr: *const *const u8) {
-    println!("sp: {:p}", stack_ptr);
     let argc = *stack_ptr as isize;
     let argv = stack_ptr.offset(1);
 
-    // Write argv.
     for i in 0..argc {
         let arg = *argv.offset(i);
         let mut size = 0;
