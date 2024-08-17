@@ -142,16 +142,14 @@ More precisely, the layout is as follows:
 so this is exactly where the arguments and environment variables are coming from. 
 The kernel writes them to the initial stack of the process, and each item is a pointer to the actual string.
 But you might wonder where are these actual "strings" stored? By inspecting the absolute addresses of each argument and environment variable pointer,
-you can that the real "strings" are stored after some offset from the initial stack pointer.
-You can run the complete code [here](https://github.com/mathetake/mathetake.github.io/tree/main/codes/env-args) to check the actual addresses of the arguments and environment variables strings.
-
-After the environment variables, something called "auxiliary vectors" are stored. But that is 
+you can see that the real "strings" are stored after some offset from the end of environment variables.
+Right after the environment variables, something called "auxiliary vectors" are stored. But that is 
 out of the scope here. Basically, the auxiliary vectors are used to pass some additional information to userland processes. This article [_About ELF Auxiliary Vectors_ by Manu Garg](https://articles.manugarg.com/aboutelfauxiliaryvectors)
 is the best resource I've found on the internet that explains the layout of the initial stack in a Linux process in detail.
 I highly recommend reading it if you are interested in more details.
 
 This post does nothing special but explains the basics of how arguments and environment variables are passed to a Linux user process.
-I hope this post helps those who want to understand the internals of high-level standard library functions like `os.Args` and `os.Environ()`.
+I hope this post helps those who want to understand the internals of high-level standard library functions like `os.Args` and `os.Environ()`. You can see the complete sample code [here](https://github.com/mathetake/mathetake.github.io/tree/main/codes/env-args).
 
 See you next time!
 
