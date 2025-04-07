@@ -21,12 +21,12 @@ static_resources:
                           route:
                             cluster: httpbin
                 http_filters:
-                  - name: dynamic_modules/passthrough
+                  - name: handwritten-module
                     typed_config:
                       "@type": type.googleapis.com/envoy.extensions.filters.http.dynamic_modules.v3.DynamicModuleFilter
                       dynamic_module_config:
                         name: handwritten
-                      filter_name: passthrough
+                      filter_name: handwritten
                   - name: envoy.filters.http.router
                     typed_config:
                       "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
