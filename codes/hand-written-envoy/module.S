@@ -5,5 +5,9 @@
 .global envoy_dynamic_module_on_program_init
 
 envoy_dynamic_module_on_program_init:
-    mov x0, 0 // Retrun null pointer.
+    adr x0, abi_version // Load the address of the abi_version string.
     ret
+
+.section .rodata
+abi_version:
+    .asciz "some_version_string"
