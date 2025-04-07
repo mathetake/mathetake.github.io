@@ -10,4 +10,4 @@ envoy_dynamic_module_on_program_init:
 
 .section .rodata
 abi_version:
-    .asciz "some_version_string"
+    .asciz "cf448e788b7b565ef583167d94489c93320c234224a50fa4a92f096f2467038d"
