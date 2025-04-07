@@ -12,7 +12,7 @@ hideBackToTop: true
 ---
 
 The last week, I gave a talk at EnvoyCon 2025 in London about the brand new ["Dynamic Modules" feature in Envoy](https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/advanced/dynamic_modules).
-In short, it allows users to load a shared object file into Envoy at runtime, which can be used to extend Envoy's functionality, which
+In short, it allows users to load a shared object file into Envoy at runtime, which can be used to extend Envoy's functionality. It
 is a pretty cool feature while the fundamental idea is not new at all as we see in the industry such NGINX modules.
 
 As an author of the feature and a maintainer of Envoy, I am super excited about this feature and I am glad to see that it is finally
