@@ -1,21 +1,13 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://mathetake.github.io/'
 languageCode = 'en-us'
 theme = 'typo'
 title = 'BitByteWise'
 
-[taxonomies]
-tag = 'tags'
-
 [params]
-description = "Random thoughts by @mathetake"
-ogimage = "https://avatars.githubusercontent.com/u/13513977"
+ogimage = "/favicon.ico"
 
 # Appearance settings
 theme = 'light'
-
-homeIntroContent = """
-Random thoughts by @mathetake
-"""
 
 # Collection to display on home
 homeCollection = 'posts'
@@ -24,9 +16,6 @@ homeCollection = 'posts'
 paginationSize = 100
 listSummaries = true
 listDateFormat = 'Jan 2 2006'
-
-# Breadcrumbs
-breadcrumbs = true
 
 # Social icons
 [[params.social]]
@@ -48,13 +37,3 @@ unsafe = true
 
 [markup.highlight]
 style = 'colorful'
-
-# Giscus comments
-[params.giscus]
-enable = false
-repo = "user/repo"
-repoid = "repoId"
-category = "General"
-categoryid = "categoryId"
-mapping = "pathname"
-theme = "preferred_color_scheme"

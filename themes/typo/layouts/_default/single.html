@@ -2,8 +2,6 @@
 
 {{/* Intro */}}
 
-{{ partial "breadcrumbs.html" . }}
-
 <div {{ if .Param "autonumber" }} class="autonumber" {{ end }}>
 
   <div class="single-intro-container">
@@ -32,25 +30,6 @@
 
   </div>
 
-  {{ if .Param "showTags" }}
-
-  {{ $taxonomy := "tags" }}
-
-  {{ with .Param $taxonomy }}
-  {{ $last := sub (. | len) 1 }}
-
-  <div class="single-tags">
-    {{ range $index, $tag := . }}
-    {{ with $.Site.GetPage (printf "/%s/%s" $taxonomy $tag) -}}
-    <span>
-      <a href="{{ .Permalink }}">#{{ $tag | urlize }}</a>
-    </span>
-    {{ end }}
-    {{ end }}
-  </div>
-  {{ end }}
-  {{ end }}
-
   {{/* Table of Content */}}
 
   {{ if .Param "toc" }}
@@ -64,7 +43,6 @@
 
   <div class="single-content">
     {{ .Content }}
-    {{ partial "comments.html" . }}
   </div>
 
   {{ if not (.Param "hideBackToTop") }}

@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  font-family: "Literata";
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 1rem;
   color: var(--content);
   line-height: 1.3rem;
@@ -85,21 +85,18 @@ code {
   -o-font-feature-settings: "liga", "dlig";
   font-feature-settings: "liga", "dlig";
   font-variant-ligatures: contextual;
-  font-family: "Monaspace";
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Monaco, 'Courier New', monospace;
   font-size: .9em;
 }
 
-
-.katex-display {
-  overflow-x: auto;
-  overflow-y: hidden;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+/* Inline code (not inside pre blocks) */
+:not(pre) > code {
+  background-color: var(--code-background);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  border: 1px solid var(--code-border);
 }
 
-.katex-display::-webkit-scrollbar {
-  display: none;
-}
 
 /* Footnotes */
 
@@ -145,7 +142,7 @@ footer {
 }
 
 footer a {
-  font-family: "Monaspace";
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Monaco, 'Courier New', monospace;
   margin-left: .2rem;
   margin-right: .2rem;
 }
@@ -158,12 +155,6 @@ footer a {
   align-items: baseline;
 }
 
-.tag-line {
-  margin-bottom: .5rem;
-  display: flex;
-  align-items: baseline;
-}
-
 .post-line p {
   margin-top: 0rem;
   margin-bottom: 0rem;
@@ -171,7 +162,7 @@ footer a {
 
 .line-date {
   font-size: small;
-  font-family: "Monaspace";
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Monaco, 'Courier New', monospace;
   min-width: 110px;
   max-width: 110px;
   text-align: right;
@@ -181,10 +172,6 @@ footer a {
 }
 
 .line-title {
-  margin: 0;
-}
-
-.tag-title {
   margin: 0;
 }
 
@@ -266,14 +253,6 @@ footer a {
   margin-bottom: 6rem;
 }
 
-.single-tags {
-  margin-top: -1rem;
-}
-
-.single-tags span {
-  margin-right: .3rem;
-}
-
 /* Table of contents */
 
 .toc {
@@ -312,7 +291,7 @@ footer a {
 }
 
 .autonumber h2:before {
-  content: counter(h2-counter) "\00a0\00a0";
+  content: counter(h2-counter) ".\00a0\00a0";
 }
 
 .autonumber h3:before {
@@ -353,22 +332,15 @@ footer a {
 /* breadcrumbs */
 
 .breadcrumbs {
-  /* font-family: "Monaspace"; */
   font-size: small;
   margin-bottom: calc(-0.5 * var(--h1-margin-top));
-}
-
-/* Comments */
-
-.giscus {
-  margin-top: 3rem;
 }
 
 /* Back to top */
 
 .back-to-top {
   text-align: center;
-  font-family: "Monaspace";
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Monaco, 'Courier New', monospace;
   font-size: small;
   margin-bottom: 2rem;
   margin-top: -3rem;

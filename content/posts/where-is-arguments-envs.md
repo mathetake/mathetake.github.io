@@ -5,9 +5,6 @@ summary: "Identifying the source of arguments and environment variables in a Lin
 toc: false
 readTime: false
 autonumber: true
-math: true
-tags: ["Linux", "ELF"]
-showTags: false
 hideBackToTop: true
 ---
 

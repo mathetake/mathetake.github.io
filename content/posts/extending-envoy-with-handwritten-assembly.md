@@ -5,9 +5,6 @@ summary: "A deep dive into extending Envoy with handwritten assembly code."
 toc: false
 readTime: false
 autonumber: true
-math: true
-tags: ["Envoy", "Assembly"]
-showTags: false
 hideBackToTop: true
 ---
 

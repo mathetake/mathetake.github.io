@@ -15,5 +15,5 @@
 }
 
 .monospace {
-    font-family: "Monaspace";
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Monaco, 'Courier New', monospace;
 }

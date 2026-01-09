@@ -5,9 +5,6 @@ summary: "Part 1 of the introduction to the weird world of runtime code generati
 toc: false
 readTime: false
 autonumber: true
-math: true
-tags: ["Go", "compiler"]
-showTags: false
 hideBackToTop: true
 ---
 
