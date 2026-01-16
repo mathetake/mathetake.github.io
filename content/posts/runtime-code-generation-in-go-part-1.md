@@ -24,7 +24,7 @@ I'm an open source software engineer working for a startup called [Tetrate.io](h
 In the last few years, I was knee-deep in the space of WebAssembly and its ecosystem, 
 and service mesh related software like Envoy and Istio([^1],[^2]). I've mostly written Go/C++ at work, but also like to use Rust and Zig[^6] in side projects.
 
-More importantly, I am the creator of [wazero](https:://github.com/tetratelabs/wazero) WebAssembly runtime, and that's 
+More importantly, I am the creator of [wazero](https://github.com/tetratelabs/wazero) WebAssembly runtime, and that's 
 where I learned tons of things about runtime code generation and execution in Go.
 wazero was once a part of my hobby project, but luckily it became a part of my job in the last 2.5 years thanks to the support by my employer.
 
