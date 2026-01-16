@@ -32,7 +32,7 @@ the shared object file must implement the "Envoy Dynamic Module ABI" which is de
 
 Even though Envoy provides an official Rust SDK that abstracts away all the details of the ABI, technically speaking one can
 implement the ABI in any language as long as it can produce a shared object file. 
-As I worked on the compiler implementation from scratch in my previous project, called [wazero](https://github.com/tetratelabs/wazero),
+As I worked on the compiler implementation from scratch in my previous project, called [wazero](https://github.com/wazero/wazero),
 I know a thing or two about assembly, so I thought it would be a good opportunity to have some fun with assembly language and Envoy.
 
 ## Minimal Loadable Module
