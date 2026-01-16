@@ -18,7 +18,7 @@ listSummaries = true
 listDateFormat = 'Jan 2 2006'
 
 [[params.social]]
-name = "github"
+name = "GitHub"
 url = "https://github.com/mathetake"
 
 [[params.social]]
@@ -26,7 +26,7 @@ name = "X"
 url = "https://x.com/mathetake"
 
 [[params.social]]
-name = "linkedin"
+name = "LinkedIn"
 url = "https://www.linkedin.com/in/mathetake/"
 
 [markup.goldmark.renderer]
