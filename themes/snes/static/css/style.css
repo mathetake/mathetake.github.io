@@ -318,6 +318,17 @@ img {
     border-radius: 0;
     border-left: none;
     border-right: none;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  pre code {
+    font-size: 11px !important;
+  }
+  
+  pre code span {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   code {
