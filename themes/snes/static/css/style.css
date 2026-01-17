@@ -318,21 +318,37 @@ img {
     border-radius: 0;
     border-left: none;
     border-right: none;
-    -webkit-text-size-adjust: 100% !important;
-    text-size-adjust: 100% !important;
-  }
-
-  pre code {
-    font-size: 11px !important;
   }
   
-  pre code span,
+  /* Reset ALL styles inside pre blocks on mobile */
+  pre,
+  pre *,
+  pre code,
+  pre code *,
   pre span,
-  pre * {
+  pre span * {
+    all: unset !important;
+    display: inline !important;
+    font-family: 'Space Mono', monospace !important;
     font-size: 11px !important;
-    -webkit-text-size-adjust: 100% !important;
-    text-size-adjust: 100% !important;
-    max-height: none !important;
+    line-height: 1.4 !important;
+    -webkit-text-size-adjust: none !important;
+    text-size-adjust: none !important;
+    white-space: pre !important;
+    word-wrap: normal !important;
+  }
+  
+  pre {
+    display: block !important;
+    background: #000000 !important;
+    color: #e8e8e8 !important;
+    padding: 10px !important;
+    margin: 15px -15px !important;
+    overflow-x: auto !important;
+    border: 1px solid #3a3a3a !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-radius: 0 !important;
   }
 
   code {
